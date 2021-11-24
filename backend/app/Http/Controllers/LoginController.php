@@ -20,6 +20,7 @@ class LoginController extends Controller
         ]);
         
         $remember = false;
+
         if(isset($request['remember'])){
             $remember = true;
         }
@@ -32,23 +33,29 @@ class LoginController extends Controller
          $remember)){
 
             session()->regenerate();
+
             $role = Auth::user()->role;
-     
+            $rdr ='';
+            if($role === 'admin'){
+                $rdr = '/admin/home';
+            }
+            if($role === 'hr_head'){
+                $rdr = '/hr_head/home';
+            }
+
             $data = [
                 'flag' => 1,
                 'role' => $role,
+                'rdr' => $rdr,
                 'status' => 200,
             ];
-
            return $data;
 
-        }else{
-            return response()->json("login failed!");
         }
 
     }
 
-    public function google_auth(Request $request)
+    /*public function google_auth(Request $request)
     {
 
         $validated_user = $request->validate([
@@ -90,6 +97,6 @@ class LoginController extends Controller
         
         }
 
-    }
+    }*/
 
 }

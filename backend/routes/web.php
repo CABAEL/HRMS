@@ -7,7 +7,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\EmailController;
-
+use GuzzleHttp\Middleware;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,41 +20,29 @@ use App\Http\Controllers\EmailController;
 |
 */
 
-
-Route::get('/', function (Request $request) {
-    return view('/login');
-})->middleware('role')->name('base');
-
-
-
-
-Route::get('/test_func',[EmailController::class,'index']);
-
-Route::POSt('/test_func_index',[EmailController::class,'date2Qtr']);
-
-Route::get('/session',function(Request $request){
+Route::get('/test', function (Request $request) {
     return Auth::user();
 });
 
-Route::get('/test1',function(Request $request){
-    return view('asd');
-});
-    
-Route::post('login_post',[LoginController::class,'authenticate']);
+Route::get('/login', function (Request $request) {
+    return view('/login');
+})->name('login');
 
-Route::post('google_auth',[LoginController::class,'google_auth']);
+Route::post('login/login_post',[LoginController::class,'authenticate']);
+Route::get('/logout',[LogoutController::class,'logout_user'])->name('logout');
+//Route::post('login_post',[ 'as' => 'login', 'uses' => 'LoginController@authenticate']);
 
-
-Route::middleware(['auth'])->group(function(){
+//Route::post('google_auth',[LoginController::class,'google_auth']);
+Route::middleware(['auth','role'])->group(function(){
 
     Route::group([                                           
         'prefix' => 'admin',
-        'as' => 'admin'
+        'as' => 'admin',
         ],function(){
         
         Route::get('/',function(Request $request){
             return redirect('admin/home');
-        });
+        })->name('admin_home');
 
         Route::get('/home',function(Request $request){
             return view('template.admin.index');
@@ -92,23 +80,60 @@ Route::middleware(['auth'])->group(function(){
 
     Route::group([
         'prefix' => 'hr_head',
-        'as' => 'hr_head'
+        'as' => 'hr_head',
         ],function(){
-        Route::get('/home',function(Request $request){
-            //return "meron";
-            return view('template.hr_head.index');
-        });
+
+            Route::get('/',function(Request $request){
+                return redirect('hr_head/home');
+            })->name('hr_head_home');
+    
+            Route::get('/home',function(Request $request){
+                return view('template.hr_head.index');
+            });
+    
+            Route::get('/deactivated_users',function(){
+                return view('template.hr_head.deactivated_users');
+            });
+    
+            Route::get('/logout',function(Request $request){
+                return redirect(route('logout'));
+            });
+    
+            Route::get('/users',function(){
+                return view('template.hr_head.users');
+            });
+
+            Route::get('/employees',function(){
+                return view('template.hr_head.employee_list');
+            });
+    
+            Route::get('/activate_user/{id}',[UserController::class,'activate']);
+
+            Route::resource('/employee_list',UserController::class);
+    
+            Route::put('/update_user_data/{id}',[UserController::class,'update']);
+    
+            Route::put('/confirm_deactivate/{id}',[UserController::class,'deactivateUser']);
+    
+            Route::delete('/confirm_delete/{id}',[UserController::class,'destroy']);
+    
+            Route::get('/user_list',[UserController::class,'index']);
+    
+            Route::get('/deactivated_list',[UserController::class,'deactivatedUser']);
+    
+            Route::get('/user_info/{id}',[UserController::class,'user_info']);
+    
+            Route::post('add_user',[UserController::class,'store']);
+
+
     });
 
-    
     Route::resource('user',UserController::class);
-
-    Route::get('/logout',[LogoutController::class,'logout_user'])->name('logout');
 
 });
     /*Route::post('/sendEmail',[EmailController::class,'send']);*/
 
-Route::get('/invalidUser',function(){
+/*Route::get('/invalidUser',function(){
     
     $data = [
         'status' => 'Invalid request.',
@@ -119,7 +144,7 @@ Route::get('/invalidUser',function(){
     return redirect(route('base'));
 
 
-})->name('invalidUser');
+})->name('invalidUser');*/
 
 
 

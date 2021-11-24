@@ -16,16 +16,33 @@ class UserController extends Controller
      */
     public function index()
     {
-        $current_user = Auth::user()->id;
-        $request = User::all()
-        ->where('id', '!=' , $current_user)
-        ->where('status','!=',0);
-        
-        $data = [
-            'response_time' => LARAVEL_START,
-            'count' => count($request),
-            'data' => $request,
-        ];
+
+        if(Auth::user()->role == "admin"){
+            $current_user = Auth::user()->id;
+            $request = User::all()
+            ->where('id', '!=' , $current_user)
+            ->where('status','!=',0);
+            
+            $data = [
+                'response_time' => LARAVEL_START,
+                'count' => count($request),
+                'data' => $request,
+            ];
+        }
+        if(Auth::user()->role == "hr_head"){
+            $current_user = Auth::user()->id;
+            $request = User::all()
+            ->where('id', '!=' , $current_user)
+            ->where('status','!=',0)
+            ->where('role','!=','admin');
+            
+            $data = [
+                'response_time' => LARAVEL_START,
+                'count' => count($request),
+                'data' => $request,
+            ];
+        }
+
         
         return response()->json($data);
 

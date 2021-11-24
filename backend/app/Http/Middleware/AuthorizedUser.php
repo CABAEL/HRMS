@@ -16,25 +16,17 @@ class AuthorizedUser
      */
     public function handle(Request $request, Closure $next)
     {
-        if(Auth::check()){
-            if($request->user()->role == 'admin'){
 
-                return redirect('/admin/home');
-                
-            }
-            if($request->user()->role == 'hr_head'){
+        $url = $request->url();
+        $segment = explode('/',$url);
+        $user_dir = $segment[3];
+        $user_role = Auth::user()->role;
 
-                return redirect('/hr_head/home');
-
-            }
-            else{
-                
-                return abort('401');
-            }
+        if ($user_dir != $user_role)
+        {
+            return redirect('/'.$user_role.'/home');
         }
-        else{
-            return response()->view('login');
-        }
+        return $next($request);
 
     }
 }

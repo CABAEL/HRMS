@@ -1,105 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
-@include('template.admin.segments.header')
+@include('template.hr_head.segments.header')
   <body class="fixed-nav sticky-footer bg-dark" id="page-top">
-  @include('template.admin.segments.navbar')
-
+  @include('template.hr_head.segments.navbar')
 
     <div class="content-wrapper">
       <div class="container-fluid">
-        <!-- Breadcrumbs -->
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item">
-            <a href="#">Dashboard</a>
-          </li>
-          <li class="breadcrumb-item active">My Dashboard</li>
-        </ol>
 
-        <!-- Icon Cards -->
-        <div class="row">
-          <div class="col-xl-3 col-sm-6 mb-3">
-            <div class="card text-white bg-primary o-hidden h-100">
-              <div class="card-body">
-                <div class="card-body-icon">
-                  <i class="fa fa-fw fa-comments"></i>
-                </div>
-                <div class="mr-5">
-                  26 New Messages!
-                </div>
-              </div>
-              <a href="#" class="card-footer text-white clearfix small z-1">
-                <span class="float-left">View Details</span>
-                <span class="float-right">
-                  <i class="fa fa-angle-right"></i>
-                </span>
-              </a>
-            </div>
-          </div>
-          <div class="col-xl-3 col-sm-6 mb-3">
-            <div class="card text-white bg-warning o-hidden h-100">
-              <div class="card-body">
-                <div class="card-body-icon">
-                  <i class="fa fa-fw fa-list"></i>
-                </div>
-                <div class="mr-5">
-                  11 New Tasks!
-                </div>
-              </div>
-              <a href="#" class="card-footer text-white clearfix small z-1">
-                <span class="float-left">View Details</span>
-                <span class="float-right">
-                  <i class="fa fa-angle-right"></i>
-                </span>
-              </a>
-            </div>
-          </div>
-          <div class="col-xl-3 col-sm-6 mb-3">
-            <div class="card text-white bg-success o-hidden h-100">
-              <div class="card-body">
-                <div class="card-body-icon">
-                  <i class="fa fa-fw fa-shopping-cart"></i>
-                </div>
-                <div class="mr-5">
-                  123 New Orders!
-                </div>
-              </div>
-              <a href="#" class="card-footer text-white clearfix small z-1">
-                <span class="float-left">View Details</span>
-                <span class="float-right">
-                  <i class="fa fa-angle-right"></i>
-                </span>
-              </a>
-            </div>
-          </div>
-          <div class="col-xl-3 col-sm-6 mb-3">
-            <div class="card text-white bg-danger o-hidden h-100">
-              <div class="card-body">
-                <div class="card-body-icon">
-                  <i class="fa fa-fw fa-support"></i>
-                </div>
-                <div class="mr-5">
-                  13 New Tickets!
-                </div>
-              </div>
-              <a href="#" class="card-footer text-white clearfix small z-1">
-                <span class="float-left">View Details</span>
-                <span class="float-right">
-                  <i class="fa fa-angle-right"></i>
-                </span>
-              </a>
-            </div>
-          </div>
-        </div>
-        
+<!-- chart -->
 
-        <button id="sendEmail" class="btn btn-success btn-lg">SEND EMAIL</button>
+<div class="card-header small text-muted">
+  <i class="fa fa-bar-chart"></i>
+  Applicants
+</div>
+<div class="card-body">
+  <div class="row">
+  
+    <div class="col-sm-12 text-center my-auto">
+      <div class="h4 mb-0 text-primary"></div>
+
+    </div>
+
+    <div class="col-sm-2 my-auto"></div>
+    <div class="col-sm-8 my-auto">
+    <iframe class="chartjs-hidden-iframe" style="display: block; overflow: hidden; border: 0px none; margin: 0px; inset: 0px; height: 100%; width: 100%; position: absolute; pointer-events: none; z-index: -1;" tabindex="-1"></iframe>
+    <div class="small text-muted">
+        <select name="" id="" class="form">
+          <option value="2000">2000</option>
+          <option value="2001">2001</option>
+          <option value="2003">2003</option>
+        </select>
+      </div>  
+    <canvas id="applicants" style="display: block; height: 196px; width: 392px;" width="980" height="490"></canvas>
+    </div>
+    <div class="col-sm-2 my-auto"></div>
+  </div>
+</div>
+<div class="card-header small text-muted">
+<i class="fa fa-bar-chart"></i>
+  Active employees
+</div>
+
+
+<div class="card-body">
+  <div class="row">
+  
+    <div class="col-sm-12 text-center my-auto">
+      <div class="h4 mb-0 text-primary"></div>
+
+    </div>
+
+
+    <div class="col-sm-2 my-auto"></div>
+    <div class="col-sm-8 my-auto">
+    <iframe class="chartjs-hidden-iframe" style="display: block; overflow: hidden; border: 0px none; margin: 0px; inset: 0px; height: 100%; width: 100%; position: absolute; pointer-events: none; z-index: -1;" tabindex="-1"></iframe>
+    <div class="small text-muted">
+        <select name="" id="" class="form">
+          <option value="2000">2000</option>
+          <option value="2001">2001</option>
+          <option value="2003">2003</option>
+        </select>
+      </div>  
+    <canvas id="active_employees" style="display: block; height: 196px; width: 392px;" width="980" height="490"></canvas>
+    </div>
+    <div class="col-sm-2 my-auto"></div>
+
+  </div>
+</div>
+
+
+            
 
 
       </div>
       <!-- /.container-fluid -->
     </div>
     <!-- /.content-wrapper -->
+    
   @include('template.hr_head.segments.footer')
+  <script src="{{ asset('js/custom/chart.js') }}"></script>
+  <script>
+
+  </script>
+
   </body>
 
 </html>

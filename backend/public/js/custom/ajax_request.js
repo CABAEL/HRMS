@@ -28,7 +28,6 @@ $.ajax({
     }
 });
 
-
 $(document).on('click','.viewuser',function(event) {
     event.preventDefault();
     var id = $(this).data('id');

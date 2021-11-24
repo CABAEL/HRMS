@@ -2,7 +2,6 @@
 <html lang="en">
 
   <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -76,7 +75,7 @@
     <!--custom js-->
     <script src="{{ asset('js/custom/custom.js') }}"></script>
 <script>
-
+$( document ).ready(function() {
   $('#loginBtn').on('click', function() {
   
   show_loader();
@@ -95,18 +94,13 @@
       },
       success: function(data) {
         console.log(data);
-        hide_loader();
-        if(data.flag == 1 && data.role != null){
-          console.lo
-          if(data.role == "admin"){
-            window.location.replace('/admin/home');
-          }
-          if(data.role == "hr_head"){
-            window.location.replace('/hr_head/home');
-          }
-          
+        
+        if(data.flag == 1 ){
+          hide_loader();
+          window.location = (data.rdr);
         }else{
           alert("Login Failed!");
+          hide_loader();
         }
       },
       error: function(e) {
@@ -116,6 +110,8 @@
   });
 
 }); 
+});
+
 </script>
 <preloader id="preloader"><img src="{{asset('img/loader/loader.gif')}}" class="loader_gif"></preloader>
 <script src="{{ asset('js/custom/preloader.js') }}"></script>
