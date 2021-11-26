@@ -87,19 +87,10 @@ var myLineChart = new Chart(active_employees_data, {
     ,"November",
     ,"December"
   ],
-    datasets: [{
-      label: "Hired",
-      backgroundColor: "rgba(2,117,216,1)",
-      borderColor: "rgba(2,117,216,1)",
-      data: [
-        15
-        , 100
-
-      ],
-    },
+    datasets: [
     {
-      label: "Pending",
-      backgroundColor: "rgba(87, 10, 19)",
+      label: "Active",
+      backgroundColor: "#ace",
       borderColor: "rgba(38, 38, 1,1)",
       data: [
         12
@@ -132,7 +123,7 @@ var myLineChart = new Chart(active_employees_data, {
       }],
     },
     legend: {
-      display: true
+      display: false
     }
   }
 });

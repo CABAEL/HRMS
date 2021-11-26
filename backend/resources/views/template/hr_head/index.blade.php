@@ -60,6 +60,8 @@
           <option value="2001">2001</option>
           <option value="2003">2003</option>
         </select>
+        <br>
+        <br>
       </div>  
     <canvas id="active_employees" style="display: block; height: 196px; width: 392px;" width="980" height="490"></canvas>
     </div>

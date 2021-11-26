@@ -13,6 +13,20 @@ $user_dir = $exploded_url[4];
             </a>
           </li>
           <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
+            <a class="nav-link" href="/hr_head/applicants" data-parent="#exampleAccordion">
+              <i class="fa fa-fw fa-user"></i>
+              <span class="nav-link-text">
+                Applicants</span>
+            </a>
+          </li>
+          <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
+            <a class="nav-link" href="/hr_head/job_vacancies" data-parent="#exampleAccordion">
+              <i class="fa fa-fw fa-book"></i>
+              <span class="nav-link-text">
+                Job Vacancies</span>
+            </a>
+          </li>
+          <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
             <a class="nav-link" href="/hr_head/employees" data-parent="#exampleAccordion">
               <i class="fa fa-fw fa-user"></i>
               <span class="nav-link-text">
@@ -23,7 +37,7 @@ $user_dir = $exploded_url[4];
             <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseComponents" data-parent="#exampleAccordion">
               <i class="fa fa-fw fa-users"></i>
               <span class="nav-link-text">
-                Users</span>
+                User Accounts</span>
             </a>
             <ul class="sidenav-second-level collapse" id="collapseComponents">
               <li>

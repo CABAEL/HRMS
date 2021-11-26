@@ -16,6 +16,10 @@ class User_profile extends Model
         'fname',
         'mname',
         'lname',
+        'age',
+        'gender',
+        'birthday',
+        'address',
         'email',
         'mobile_number'
     ];

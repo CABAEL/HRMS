@@ -14,19 +14,24 @@ class Authenticate extends Middleware
      */
     protected function redirectTo($request)
     {
+        if($request->user())
+        {
+            if (Auth::user()->role == 'admin'){
+                //return 'admin/home';
+                return route('admin_home');
+            }
 
-        if (Auth::user()->role == 'admin'){
-            //return 'admin/home';
-            return route('admin_home');
-        }
+            else if (Auth::user()->role == 'hr_head'){
+                //return 'hr_head/home';
+                return route('hr_head_home');
+            }
+
+            else{
+                return route('login');
+            }
             
-        else if (Auth::user()->role == 'hr_head'){
-            //return 'hr_head/home';
-            return route('hr_head_home');
-        }
-            
-        else{
-            return '/login';
+        }else{
+            return route('login');
         }
         
     }

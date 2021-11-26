@@ -101,6 +101,10 @@ class UserController extends Controller
         ['users.id','fname',
         'mname',
         'lname',
+        'age',
+        'gender',
+        'birthday',
+        'address',
         'email',
         'mobile_number',
         'role',
@@ -121,6 +125,10 @@ class UserController extends Controller
             'fname' => 'required|max:60',
             'mname' => 'nullable|max:60',
             'lname' => 'required|max:60',
+            'age' => 'required|integer',
+            'address' => 'required',
+            'gender' => 'required|max:1',
+            'birthday' => 'required',
             'email' => 'required|email|max:60',
             'mobile_number' => 'required|numeric',
             'role' => 'required'
@@ -142,6 +150,10 @@ class UserController extends Controller
             'fname' => $validated_user['fname'],
             'mname' => $validated_user['mname'],
             'lname' => $validated_user['lname'],
+            'age' => $validated_user['age'],
+            'gender' => $validated_user['gender'],
+            'birthday' => $validated_user['birthday'],
+            'address' => $validated_user['address'],
             'mobile_number' => $validated_user['mobile_number'],
             'email' => $validated_user['email'],
         ]);
@@ -219,6 +231,10 @@ class UserController extends Controller
                 'update_fname' => 'required|max:60',
                 'update_mname' => 'nullable|max:60',
                 'update_lname' => 'required|max:60',
+                'update_age' => 'required|integer',
+                'update_gender' => 'required|max:60',
+                'update_birthday' => 'required|max:60',
+                'update_address' => 'required',
                 'update_email' => 'required|email|max:60',
                 'update_mobile_number' => 'required|numeric',
                 'update_role' => 'required'
@@ -231,6 +247,10 @@ class UserController extends Controller
                 'update_fname' => 'required|max:60',
                 'update_mname' => 'nullable|max:60',
                 'update_lname' => 'required|max:60',
+                'update_age' => 'required|integer',
+                'update_gender' => 'required|max:60',
+                'update_birthday' => 'required|max:60',
+                'update_address' => 'required',                
                 'update_email' => 'required|email|max:60',
                 'update_mobile_number' => 'required|numeric',
                 'update_role' => 'required'
@@ -250,6 +270,10 @@ class UserController extends Controller
         $user_profile_table->fname = $validated_update['update_fname'];
         $user_profile_table->mname = $validated_update['update_mname'];
         $user_profile_table->lname = $validated_update['update_lname'];
+        $user_profile_table->age = $validated_update['update_age'];
+        $user_profile_table->gender = $validated_update['update_gender'];
+        $user_profile_table->birthday = $validated_update['update_birthday'];
+        $user_profile_table->address = $validated_update['update_address'];
         $user_profile_table->email = $validated_update['update_email'];
         $user_profile_table->mobile_number = $validated_update['update_mobile_number'];
         

@@ -18,7 +18,7 @@ class CreateUsersTable extends Migration
             //$table->string('google_id')->default('');
             $table->string('username')->unique();
             $table->string('password');
-            $table->string('role')->default('employee');
+            $table->string('role')->default('applicant');
             $table->integer('status')->default(1);
             $table->rememberToken();
             $table->timestamps();

@@ -29,6 +29,36 @@
                     </div>
 
                     <div class="form-group">
+                        <div class="form-row">
+                            <div class="col-md-4">
+                                <label for="fname">Age</label>
+                                <input type="number" class="form-control" id="update_age" name="update_age" autofocus/>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="gender">Gender</label>
+                                <select name="update_gender" class="form-control" id="update_gender">
+                                  <option value="">---</option>
+                                  <option value="M">MALE</option>
+                                  <option value="F">FEMALE</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="update_birthday">Birth date</label>
+                                <input type="date" class="form-control" id="update_birthday" name="update_birthday" aria-describedby="nameHelp" >
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <div class="form-row">
+                            <div class="col-md-12">
+                                <label for="address">Address</label>
+                                <input type="text" class="form-control" id="update_address" name="update_address" autofocus/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
                       <div class="form-row">                     
                         <div class="col-md-6">
                         <label for="update_email">Email address</label>
@@ -54,8 +84,6 @@
                                 <option value="">---</option>
                                 <option value="hr_head">HR head</option>
                                 <option value="hr_assistant">HR assistant</option>
-                                <option value="employee">Employee</option>
-                                <option value="applicant">Applicant</option>
                             </select>
                         </div>                      
                     

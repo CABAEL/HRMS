@@ -31,6 +31,36 @@
                     </div>
 
                     <div class="form-group">
+                        <div class="form-row">
+                            <div class="col-md-4">
+                                <label for="fname">Age</label>
+                                <input type="number" class="form-control" id="age" name="age" autofocus/>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="gender">Gender</label>
+                                <select name="gender" class="form-control" id="gender">
+                                  <option value="">---</option>
+                                  <option value="M">MALE</option>
+                                  <option value="F">FEMALE</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="lname">Birth date</label>
+                                <input type="date" class="form-control" id="birthday" name="birthday" aria-describedby="nameHelp" >
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="form-row">
+                            <div class="col-md-12">
+                                <label for="fname">Address</label>
+                                <input type="text" class="form-control" id="address" name="address" autofocus/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
                       <div class="form-row">                     
                         <div class="col-md-6">
                         <label for="email">Email address</label>
@@ -54,12 +84,10 @@
                             <label for="role">Role</label>
                             <select class="form-control" id="role" name="role" aria-describedby="nameHelp">
                                 <option value="">---</option>
+                                <option value="hr_head">HR head</option>
                                 <option value="hr_assistant">HR assistant</option>
-                                <option value="employee">Employee</option>
-                                <option value="applicant">Applicant</option>
                             </select>
                         </div>                      
-                    
                     </div>
                     </div>
 

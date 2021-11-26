@@ -48,6 +48,12 @@ $(document).on('click','.viewuser',function(event) {
         $('#viewusermodal #update_fname').val(data.fname);
         $('#viewusermodal #update_mname').val(data.mname);
         $('#viewusermodal #update_lname').val(data.lname);
+
+        $('#viewusermodal #update_age').val(data.age);
+        $("#viewusermodal option[value="+data.gender+"]").attr('selected','selected');
+        $('#viewusermodal #update_birthday').val(data.birthday);
+        $('#viewusermodal #update_address').val(data.address);
+
         $('#viewusermodal #update_email').val(data.email);
         $('#viewusermodal #update_username').val(data.username);
         $('#viewusermodal #update_mobile_number').val(data.mobile_number);
@@ -91,7 +97,7 @@ $(document).on('click','.viewuser',function(event) {
         alert('Updated successfully!');
         //promt_success(element,data)
         hide_loader();
-        window.location.replace('/');
+        window.location.replace('/login');
       },
       error: function(e) {
         //alert(e.responseJSON.message +"<br>"+e.responseJSON.errors);
@@ -125,7 +131,7 @@ $(document).on('click','.viewuser',function(event) {
       alert('User added successfully!');
       //promt_success(element,data)
       hide_loader();
-      window.location.replace('/');
+      window.location.replace('/login');
     },
     error: function(e) {
       //alert(e.responseJSON.message +"<br>"+e.responseJSON.errors);
@@ -155,7 +161,7 @@ $(document).on("click",".deactivate_yes",function(e) {
           alert('User deactivated!');
           //promt_success(element,data)
           hide_loader();
-          window.location.replace('/');
+          window.location.replace('/login');
         },
         error: function(e){
           //alert(e.responseJSON.message +"<br>"+e.responseJSON.errors);
@@ -183,7 +189,7 @@ $(document).on("click",".delete_yes",function(e) {
           alert('User deleted!');
           //promt_success(element,data)
           hide_loader();
-          window.location.replace('/');
+          window.location.replace('/login');
         },
         error: function(e){
           //alert(e.responseJSON.message +"<br>"+e.responseJSON.errors);

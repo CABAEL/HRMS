@@ -16,7 +16,7 @@ $user_dir = $exploded_url[4];
             <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseComponents" data-parent="#exampleAccordion">
               <i class="fa fa-fw fa-users"></i>
               <span class="nav-link-text">
-                Users</span>
+              User Accounts</span>
             </a>
             <ul class="sidenav-second-level collapse" id="collapseComponents">
               <li>

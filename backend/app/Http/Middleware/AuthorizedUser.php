@@ -16,17 +16,18 @@ class AuthorizedUser
      */
     public function handle(Request $request, Closure $next)
     {
-
-        $url = $request->url();
-        $segment = explode('/',$url);
-        $user_dir = $segment[3];
-        $user_role = Auth::user()->role;
-
-        if ($user_dir != $user_role)
-        {
-            return redirect('/'.$user_role.'/home');
+        if(Auth::check()){
+            $url = $request->url();
+            $segment = explode('/',$url);
+            $user_dir = $segment[3];
+            $user_role = Auth::user()->role;
+    
+            if ($user_dir != $user_role)
+            {
+                return redirect('/'.$user_role.'/home');
+            }
+        
         }
         return $next($request);
-
     }
 }
