@@ -42,7 +42,6 @@
     <!-- /.content-wrapper -->
     
   @include('template.applicant.segments.footer')
-  <script src="{{ asset('js/custom/chart.js') }}"></script>
   <script>
 
   </script>

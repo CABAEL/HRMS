@@ -33,24 +33,20 @@
 
 @include('template.applicant.segments.modal.application_description')
 
-
-
 <!-- Bootstrap core JavaScript -->
 <script src="{{ asset('packages/jquery/jquery.min.js') }}"></script>
 <script src="{{ asset('packages/popper/popper.min.js') }}"></script>
 <script src="{{ asset('packages/bootstrap/js/bootstrap.min.js') }}"></script>
 <!-- Plugin JavaScript -->
 <script src="{{ asset('packages/jquery-easing/jquery.easing.min.js') }}"></script>
-<script src="{{ asset('packages/chart.js/Chart.min.js') }}"></script>
 <script src="{{ asset('packages/datatables/jquery.dataTables.js') }}"></script>
 <script src="{{ asset('packages/datatables/dataTables.bootstrap4.js') }}"></script>
 <!-- Custom scripts for this template -->
-<script src="{{ asset('js/sb-admin.min.js') }}"></script>
 <!-- Custom js-->
 
-<script src="{{ asset('js/custom/preloader.js') }}"></script>
 <script src="{{ asset('js/custom/custom.js') }}"></script>
-
+<script src="{{ asset('js/custom/page/applicant/home.js') }}"></script>
+<script src="{{ asset('js/custom/preloader.js') }}"></script>
 
 
 

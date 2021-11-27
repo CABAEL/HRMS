@@ -17,7 +17,8 @@ class CreateApplicantDatasTable extends Migration
             $table->id();
             $table->string('user_profile_id');
             $table->string('resume_link')->nullable();
-            $table->string('educational_background')->nullable();
+            $table->string('position_applied')->nullable();
+            $table->string('about_self')->nullable();
             $table->integer('status')->default(0);            
             $table->timestamps();
             $table->softDeletes();

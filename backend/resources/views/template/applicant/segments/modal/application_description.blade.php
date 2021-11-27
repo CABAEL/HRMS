@@ -8,15 +8,15 @@
                 </button>
             </div>
             <div class="modal-body">
-            <center><div class="alert alert-danger" id="add_user_errors"></div></center>
+            <center><div class="alert alert-danger" id="application_detail_errors"></div></center>
                 <div class="container-fluid">
-                  <form id="add_user_form">
+                  <form id="applicant_details_form">
                     <div class="form-group">
                         
                         <div class="form-row">
                           <div class="col-md-12">
                                 <label for="position">Position Applied for</label>
-                                <select name="position" id="posiiton">
+                                <select class="form-control" name="position" id="position">
                                   
                                 </select>
                           </div>
@@ -25,7 +25,7 @@
                         <div class="form-row">
                         <div class="col-md-12">
                                 <label for="lname">Write something about yourself</label>
-                                <textarea name="" id="" class="form-control" cols="30" rows="10"></textarea>
+                                <textarea name="about_self" id="about_self" class="form-control" cols="30" rows="10"></textarea>
                             </div>
                         </div>
                     </div>
@@ -34,7 +34,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-              <button class="btn btn-primary btn-block" id="AddAccountSubmit">Submit</button>
+              <button class="btn btn-primary btn-block" id="ApplicationDetails">Submit</button>
             </div>
         </div>
     </div>

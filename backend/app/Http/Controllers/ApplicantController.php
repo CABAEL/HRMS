@@ -38,8 +38,8 @@ class ApplicantController extends Controller
      */
     public function store(Request $request)
     {
-        
-        //return $request;
+
+
         $validated_user = $request->validate([
             'username' => 'unique:users,username|required|max:60',
             'password' => 'required|confirmed|max:60',
@@ -95,6 +95,8 @@ class ApplicantController extends Controller
         ];
 
         return response()->json($data);
+        
+
     }
 
     /**
@@ -139,6 +141,28 @@ class ApplicantController extends Controller
      */
     public function destroy($id)
     {
-        //
+
+    }
+
+    public function applicantDetails(Request $request)
+    {
+
+        $validated_request = $request->validate([
+            'position' => 'required',
+            'about_self' => 'required',
+        ]);
+
+        $request_applicant = Applicant_data::create([
+            'position_applied' => $validated_request['position'],
+            'about_self' => $validated_request['about_self'],
+        ]);
+
+        $data = [
+            'data' => $request_applicant,
+            'message' => 'User Created Successfully!'
+        ];
+
+        return response()->json($data);
+
     }
 }

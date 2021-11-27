@@ -12,6 +12,7 @@ class Applicant_data extends Model
     protected $fillable = [
         'user_profile_id',
         'resume_link',
+        'position_applied',
         'educational_background',
         'status',
     ];

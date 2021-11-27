@@ -33,8 +33,7 @@
     <!-- /.content-wrapper -->
     
   @include('template.hr_head.segments.footer')
-  <script src="{{ asset('js/custom/page/hr_head/employee_list.js') }}"></script>
-
+  
   </body>
 
 </html>

@@ -140,9 +140,8 @@ Route::middleware(['auth','role'])->group(function(){
             Route::get('/user_info/{id}',[UserController::class,'user_info']);
     
             Route::post('add_user',[UserController::class,'store']);
-
-            Route::resource('job',JobVacancyController::class);
-
+        
+            Route::resource('/job',JobVacancyController::class);
 
     });
     Route::group([
@@ -160,9 +159,11 @@ Route::middleware(['auth','role'])->group(function(){
     
             Route::get('/home',function(Request $request){
                 return view('template.applicant.index');
-        });
+            });
 
+            Route::resource('/job',JobVacancyController::class);
 
+            Route::post('/applicant_details',[ApplicantController::class,'applicantDetails']);
     });
 
     Route::resource('user',UserController::class);

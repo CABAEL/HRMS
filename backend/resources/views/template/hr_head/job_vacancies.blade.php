@@ -15,8 +15,9 @@
 
         <!-- table list -->
         <!--<button class="btn btn-sm viewuser2">sample</button>-->
+        <br>
         <center><button class="btn btn-primary" data-toggle="modal" data-target="#add_job">Add job vacancy</button></center>
-        
+        <br>
         <table class="table table-bordered" width="100%" id="job-table" cellspacing="0">
                 <thead>
                   <tr>
