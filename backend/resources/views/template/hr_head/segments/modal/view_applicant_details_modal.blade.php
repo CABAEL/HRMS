@@ -47,12 +47,13 @@
                   </form>   
                 </div>
             </div>
-            <div class="modal-footer">
+            <div class="modal-footer" id="applicant_action">
                 <button class="btn btn-primary btn-block" id="accept_application">Accept</button>
                 <br>
                 <button class="btn btn-default btn-block" id="decline_application">Decline</button>
-
-        </div>
+                <br>
+                <button class="btn btn-danger btn-block" id="mark_as_failed">Mark as failed</button>
+            </div>
     </div>
 </div>
 </div>

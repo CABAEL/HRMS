@@ -29,6 +29,7 @@ class ApplicantController extends Controller
             $users = User_profile::
             join('applicant_datas', 'applicant_datas.user_id', '=', 'user_profiles.id')
             ->join('job_vacancies', 'job_vacancies.id', '=', 'applicant_datas.position_applied')
+            ->select('*','applicant_datas.*', 'job_vacancies.name')
             ->where('applicant_datas.status','!=',2)
             ->where('applicant_datas.status','!=',3)
             ->get();    
@@ -57,7 +58,7 @@ class ApplicantController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -66,6 +67,52 @@ class ApplicantController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    public function acceptApplicant(Request $request)
+    {
+        $user_id = $request->id;
+        $applicant_data = Applicant_data::where('user_id',$user_id)->update(['status'=>1]);
+
+        $response = [
+            'flag' => 1,
+            'data' => $applicant_data,
+            'message' => 'Applicant status updated!'
+        ];
+
+        return response()->json($response);
+
+    }
+
+    public function declineApplicant(Request $request)
+    {
+        $user_id = $request->id;
+        $applicant_data = Applicant_data::where('user_id',$user_id)->update(['status'=>2]);
+
+        $response = [
+            'flag' => 1,
+            'data' => $applicant_data,
+            'message' => 'Applicant status updated!'
+        ];
+
+        return response()->json($response);
+
+    }
+
+    public function failedApplicant(Request $request)
+    {
+        $user_id = $request->id;
+
+        $applicant_data = Applicant_data::where('user_id',$user_id)->update(['status' => 3]);
+
+        $response = [
+            'flag' => 1,
+            'data' => $applicant_data,
+            'message' => 'Applicant status updated!'
+        ];
+
+        return response()->json($response);
+
+    }
+
     public function store(Request $request)
     {
 

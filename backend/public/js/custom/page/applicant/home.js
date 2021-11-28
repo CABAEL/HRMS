@@ -32,20 +32,23 @@ $.ajax({
     },
     success: function(ret) {
      console.log(ret);
-     if(ret.length == 0){
-      $('#resume_href').attr('href',base_url('../upload/no_resume.pdf'));
-
-     }else{
-      if(ret[0].resume_link != null){
-
-        $('#resume_href').attr('href',base_url('../upload/resume/'+ret[0].resume_link));
-       }
-       else{
-        $('#resume_href').attr('href',base_url('../upload/no_resume.pdf'));
-       }
+     var status = '';
+     if(ret[0].status == 0){
+       status = "Pending";
+     }
+     if(ret[0].status == 1){
+       status = "Accepted";
+     }
+     if(ret[0].status == 2){
+       status = "Rejected";
+     }
+     if(ret[0].status == 3){
+       status = "Marked as failed";
+       $('#ApplicationDetails').attr('disabled','disabled');
+       $('#ApplicationDetails').css('cursor','disabled');
      }
 
-     
+     $('#application_status').html(status);
     },
     error: function(e){
      

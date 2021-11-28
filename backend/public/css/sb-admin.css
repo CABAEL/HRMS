@@ -10,7 +10,10 @@ html {
 .navbar-nav .dropdown-menu{
 left:-100% !important;
 }
-
+button:disabled {
+  cursor: not-allowed;
+  pointer-events: all !important;
+}
 .table , th,td{
   text-align: center;
 }

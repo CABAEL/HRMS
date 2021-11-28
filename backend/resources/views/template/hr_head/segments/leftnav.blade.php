@@ -13,6 +13,13 @@ $user_dir = $exploded_url[4];
             </a>
           </li>
           <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
+            <a class="nav-link" href="" data-parent="#exampleAccordion">
+              <i class="fa fa-fw fa-exclamation"></i>
+              <span class="nav-link-text">
+                Announcment And Events</span>
+            </a>
+          </li>
+          <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
             <a class="nav-link" href="/hr_head/applicants" data-parent="#exampleAccordion">
               <i class="fa fa-fw fa-user"></i>
               <span class="nav-link-text">
@@ -34,6 +41,13 @@ $user_dir = $exploded_url[4];
             </a>
           </li>
           <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
+            <a class="nav-link" href="" data-parent="#exampleAccordion">
+              <i class="fa fa-fw fa-envelope"></i>
+              <span class="nav-link-text">
+                Chat</span>
+            </a>
+          </li>
+          <!--<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
             <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseComponents" data-parent="#exampleAccordion">
               <i class="fa fa-fw fa-users"></i>
               <span class="nav-link-text">
@@ -50,7 +64,7 @@ $user_dir = $exploded_url[4];
                 <a class="leftnavtext" href="/hr_head/deactivated_users">Deactivated User</a>
               </li>
             </ul>
-          </li>
+          </li>-->
         </ul>
         <ul class="navbar-nav sidenav-toggler">
           <li class="nav-item">

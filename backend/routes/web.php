@@ -145,6 +145,12 @@ Route::middleware(['auth','role'])->group(function(){
             Route::resource('/job',JobVacancyController::class);
 
             Route::get('/applicant_details',[ApplicantController::class,'index']);
+            
+            Route::post('/accept_applicant',[ApplicantController::class,'acceptApplicant']);
+
+            Route::post('/decline_applicant',[ApplicantController::class,'declineApplicant']);
+
+            Route::post('/failed_applicant',[ApplicantController::class,'failedApplicant']);
 
     });
     Route::group([

@@ -11,7 +11,7 @@
 
 <div class="card-header small text-muted">
   <i class="fa fa-alert"></i>
-  Application status : 
+  Application status : <span id="application_status"></span>
 </div>
 <br>
 <button class="btn btn-sm btn-info" data-toggle="modal" data-target="#career_profile">Add/Edit Application description</button>
