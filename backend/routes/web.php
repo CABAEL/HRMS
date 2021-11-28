@@ -9,6 +9,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\EmailController;
 use App\Http\Controllers\JobVacancyController;
+use App\Http\Controllers\FileUploadController;
 use GuzzleHttp\Middleware;
 
 /*
@@ -143,6 +144,8 @@ Route::middleware(['auth','role'])->group(function(){
         
             Route::resource('/job',JobVacancyController::class);
 
+            Route::get('/applicant_details',[ApplicantController::class,'index']);
+
     });
     Route::group([
         'prefix' => 'applicant',
@@ -163,7 +166,13 @@ Route::middleware(['auth','role'])->group(function(){
 
             Route::resource('/job',JobVacancyController::class);
 
-            Route::post('/applicant_details',[ApplicantController::class,'applicantDetails']);
+            Route::post('/add_applicant_details',[ApplicantController::class,'applicantDetails']);
+
+            Route::get('/applicant_details',[ApplicantController::class,'index']);
+
+            Route::get('/user_applicant_details',[ApplicantController::class,'user']);
+
+            Route::post('/upload_resume',[FileUploadController::class,'uploadResume']);
     });
 
     Route::resource('user',UserController::class);

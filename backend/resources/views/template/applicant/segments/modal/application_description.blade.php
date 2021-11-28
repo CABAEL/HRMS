@@ -8,11 +8,18 @@
                 </button>
             </div>
             <div class="modal-body">
-            <center><div class="alert alert-danger" id="application_detail_errors"></div></center>
+            <center><div class="alert alert-danger" id="details_error"></div></center>
                 <div class="container-fluid">
                   <form id="applicant_details_form">
                     <div class="form-group">
                         
+                        <div class="form-row">
+                        <div class="col-md-12">
+                          Resume file:
+                          <input type="file" id="resume_file" name="resume_file" class="form-control" accept="application/pdf" value=""/>
+                          </div>
+                        </div>
+                        <br>
                         <div class="form-row">
                           <div class="col-md-12">
                                 <label for="position">Position Applied for</label>

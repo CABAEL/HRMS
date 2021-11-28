@@ -9,22 +9,24 @@
         <!-- Breadcrumbs -->
         <ol class="breadcrumb">
           <li class="breadcrumb-item">
-            <b>Employee List</b>
+            <b>Applicant List</b>
           </li>
         </ol>
 
         <!-- table list -->
         <!--<button class="btn btn-sm viewuser2">sample</button>-->
-        <table class="table table-bordered" width="100%" id="employee-table" cellspacing="0">
+        <table class="table table-bordered" width="100%" id="applicant-table" cellspacing="0">
                 <thead>
                   <tr>
-                    <th>Employee ID</th>
                     <th>Name</th>
+                    <th>Position applied</th>
+                    <th>Application Status</th>
+                    <th>Date Applied</th>
                     <th>---</th>
                   </tr>
                 </thead>
                
-                <tbody id="EmployeeListBody"></tbody>
+                <tbody id="ApplicantListBody"></tbody>
 
         </table>
       </div>
@@ -33,7 +35,8 @@
     <!-- /.content-wrapper -->
     
   @include('template.hr_head.segments.footer')
-  <script src="{{ asset('js/custom/page/hr_head/employee_list.js') }}"></script>
+  
+  <script src="{{ asset('js/custom/page/hr_head/applicant_list.js') }}"></script>
 
   </body>
 

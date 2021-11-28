@@ -15,7 +15,7 @@ class CreateApplicantDatasTable extends Migration
     {
         Schema::create('applicant_datas', function (Blueprint $table) {
             $table->id();
-            $table->string('user_profile_id');
+            $table->string('user_id');
             $table->string('resume_link')->nullable();
             $table->string('position_applied')->nullable();
             $table->string('about_self')->nullable();

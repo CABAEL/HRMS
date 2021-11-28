@@ -10,7 +10,7 @@ class Applicant_data extends Model
     use HasFactory;
 
     protected $fillable = [
-        'user_profile_id',
+        'user_id',
         'resume_link',
         'position_applied',
         'educational_background',
@@ -19,6 +19,5 @@ class Applicant_data extends Model
 
     protected $hidden = [
         'id',
-        'user_profile_id',
     ];
 }

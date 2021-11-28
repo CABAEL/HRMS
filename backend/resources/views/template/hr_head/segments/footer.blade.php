@@ -30,10 +30,11 @@
     </div>
 </div>
 
-
+@include('template.hr_head.segments.modal.view_applicant_details_modal')
 @include('template.hr_head.segments.modal.add_user_modal')
 @include('template.hr_head.segments.modal.view_user_modal')
 @include('template.hr_head.segments.modal.add_job_modal')
+
 
 <!-- Bootstrap core JavaScript -->
 <script src="{{ asset('packages/jquery/jquery.min.js') }}"></script>

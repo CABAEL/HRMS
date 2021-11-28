@@ -15,9 +15,39 @@ class ApplicantController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        
+        $user = $request->id;
+        if($request->id){
+            $users = User_profile::
+            join('applicant_datas', 'applicant_datas.user_id', '=', 'user_profiles.id')
+            ->join('job_vacancies', 'job_vacancies.id', '=', 'applicant_datas.position_applied')
+            ->where('user_id','=',$user)
+            ->get(); 
+        }else{
+            $users = User_profile::
+            join('applicant_datas', 'applicant_datas.user_id', '=', 'user_profiles.id')
+            ->join('job_vacancies', 'job_vacancies.id', '=', 'applicant_datas.position_applied')
+            ->where('applicant_datas.status','!=',2)
+            ->where('applicant_datas.status','!=',3)
+            ->get();    
+        }
+
+
+        $data = [
+            'response_time' => LARAVEL_START,
+            'count' => count($users),
+            'data' => $users,
+        ];
+
+        return response()->json($data);
+    }
+    
+    public function user(Request $request){
+
+        //return $request->user()->id;
+        return Applicant_data::where('user_id',$request->user()->id)->get();
     }
 
     /**
@@ -80,7 +110,7 @@ class ApplicantController extends Controller
 
 
         $request_applicant = Applicant_data::create([
-            'user_profile_id' => $request_profile->id,
+            'user_id' => $request_profile->id,
         ]);
 
         $merge_data = [
@@ -147,22 +177,66 @@ class ApplicantController extends Controller
     public function applicantDetails(Request $request)
     {
 
+        $user_id = $request->user()->id;
+
         $validated_request = $request->validate([
             'position' => 'required',
             'about_self' => 'required',
+            'resume_file' => 'required',
         ]);
 
-        $request_applicant = Applicant_data::create([
-            'position_applied' => $validated_request['position'],
-            'about_self' => $validated_request['about_self'],
-        ]);
+        if(isset($_FILES['resume_file']['name'])){
+            
+            /* Getting file name */
+            $filename = $_FILES['resume_file']['name'];
 
-        $data = [
-            'data' => $request_applicant,
-            'message' => 'User Created Successfully!'
-        ];
+            /* Location */
+            $location = "upload/resume/".$filename;
+            $imageFileType = pathinfo($location,PATHINFO_EXTENSION);
+            $imageFileType = strtolower($imageFileType);
+         
+            /* Valid extensions */
+            $valid_extensions = array("pdf");
+         
+            $response = 0;
+            /* Check file extension */
+            if(in_array(strtolower($imageFileType), $valid_extensions)) {
+               /* Upload file */
+               if(move_uploaded_file($_FILES['resume_file']['tmp_name'],$location)){
+                $user = $request->user()->id;
+                //$qry = Applicant_data::where('user_id',$user)->update(['resume_link'=>$filename]);
+                  $response = $location;
+               }
+            }
+            
 
-        return response()->json($data);
+            $qry = Applicant_data::where('user_id',$user_id)->update([
+                'position_applied' => $validated_request['position'],
+                'about_self' => $validated_request['about_self'],
+                'resume_link' => $filename
+            ]);
+
+            /*$qry = Applicant_data::create(
+                [
+                    'user_id' => $user_id,
+                    'position_applied' => $validated_request['position'],
+                    'about_self' => $validated_request['about_self'],
+                    'resume_link' => $filename
+                ]
+            );*/
+    
+
+        if($qry){
+            $data = [
+                'data' => $request,
+                'message' => 'Application details created successfully!'
+            ];
+    
+            return response()->json($data);
+        }
+            
+        }
+
 
     }
 }

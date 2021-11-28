@@ -32,6 +32,7 @@
 
 
 @include('template.applicant.segments.modal.application_description')
+@include('template.applicant.segments.modal.upload_resume')
 
 <!-- Bootstrap core JavaScript -->
 <script src="{{ asset('packages/jquery/jquery.min.js') }}"></script>
