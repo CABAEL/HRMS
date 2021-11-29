@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\User_profile;
 use App\Models\Applicant_data;
+use App\Models\Employee;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
@@ -30,8 +31,9 @@ class ApplicantController extends Controller
             join('applicant_datas', 'applicant_datas.user_id', '=', 'user_profiles.id')
             ->join('job_vacancies', 'job_vacancies.id', '=', 'applicant_datas.position_applied')
             ->select('*','applicant_datas.*', 'job_vacancies.name')
-            ->where('applicant_datas.status','!=',2)
-            ->where('applicant_datas.status','!=',3)
+            ->where('applicant_datas.status','!=',2)//declined
+            ->where('applicant_datas.status','!=',3)//failed
+            ->where('applicant_datas.status','!=',4)//hired
             ->get();    
         }
 
@@ -113,6 +115,54 @@ class ApplicantController extends Controller
 
     }
 
+    public function incrementalHash(){
+        $charset = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        $base = strlen($charset);
+        $result = '';
+      
+        $now = explode(' ', microtime())[1];
+        while ($now >= $base){
+          $i = $now % $base;
+          $result = $charset[$i] . $result;
+          $now /= $base;
+        }
+        return substr($result, -5);
+    }
+
+    public function hireApplicant(Request $request)
+    {
+
+        $user_id = $request->id;
+
+        if($applicant_data = Applicant_data::where('user_id',$user_id)->update(['status' => 4])){
+
+            $selected_applicant_data = Applicant_data::where('user_id',$user_id)->get();
+            //return $selected_applicant_data[0]['id'] ;
+            $update = User::find($user_id);
+            $update->role = 'employee';
+            $update->save();
+
+            $date = date('Y');
+
+            $employee_tbl = Employee::create([
+                'user_id'=>$user_id,
+                'employee_id'=>$this->incrementalHash().'-'.$user_id.'-'.$date,
+                'applicant_data_id'=>$selected_applicant_data[0]['id'],
+            ]);
+    
+            $response = [
+                'flag' => 1,
+                'employee_id' => $employee_tbl->employee_id,
+                'message' => 'Applicant Hired!'
+            ];
+    
+            return response()->json($response);
+
+        }
+
+
+
+    }
     public function store(Request $request)
     {
 

@@ -27,6 +27,10 @@ $.ajax({
           status = "Marked as failed";
         }
 
+        if(value.status == 4){
+          status = "hired";
+        }
+
         const d = value.created_at;
         
         var actual_date= d.substring(0, 10);
@@ -182,6 +186,23 @@ $(document).on("click","#mark_as_failed",function(e) {
 $(document).on("click","#hire_applicant",function(e) {
   var id = $(this).data('id');
 
-  alert(id);
+  $.ajax({
+    url: base_url('hire_applicant'),
+    type: 'POST',
+    dataType: 'json',
+    data:{id:id},
+    headers: {
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+    },
+    success: function(ret) {
+      console.log(ret);
+      alert(ret.message);
+      window.location.reload();
+
+    },
+    error: function(e){
+
+    }
+  });
 
 });

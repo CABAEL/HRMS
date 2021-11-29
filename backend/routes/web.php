@@ -35,6 +35,9 @@ Route::get('/login', function (Request $request) {
     return view('/login');
 })->middleware('role')->name('login');
 
+
+Route::get('/hash',[ApplicantController::class,'incrementalHash']);
+
 Route::resource('/register/add_user',ApplicantController::class);
 
 Route::post('login/login_post',[LoginController::class,'authenticate']);
@@ -151,6 +154,10 @@ Route::middleware(['auth','role'])->group(function(){
             Route::post('/decline_applicant',[ApplicantController::class,'declineApplicant']);
 
             Route::post('/failed_applicant',[ApplicantController::class,'failedApplicant']);
+
+            Route::post('/hire_applicant',[ApplicantController::class,'hireApplicant']);
+
+            
 
     });
     Route::group([

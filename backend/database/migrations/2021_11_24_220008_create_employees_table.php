@@ -17,8 +17,8 @@ class CreateEmployeesTable extends Migration
             $table->string('user_id');
             $table->string('employee_id');
             $table->string('applicant_data_id')->unique();
-            $table->string('start_date');
-            $table->string('end_date');
+            $table->string('start_date')->nullable();
+            $table->string('end_date')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
