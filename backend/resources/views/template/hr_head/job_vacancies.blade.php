@@ -34,7 +34,6 @@
       <!-- /.container-fluid -->
     </div>
     <!-- /.content-wrapper -->
-
   @include('template.hr_head.segments.footer')
   <script src="{{ asset('js/custom/page/hr_head/job_vacancy.js') }}"></script>
   </body>

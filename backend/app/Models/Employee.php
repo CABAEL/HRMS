@@ -13,5 +13,6 @@ class Employee extends Model
         'user_id',
         'employee_id',
         'applicant_data_id',
+        'start_date',
     ];
 }

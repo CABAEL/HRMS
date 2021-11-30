@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Employee;
 use App\Models\User_profile;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -46,6 +47,19 @@ class UserController extends Controller
         
         return response()->json($data);
 
+    }
+
+    public function employeeList()
+    {
+        $request = User::join('user_profiles', 'users.id', '=', 'user_profiles.id')
+        ->join('employees','employees.user_id','=','user_profiles.id')->get();
+        $data = [
+            'response_time' => LARAVEL_START,
+            'count' => count($request),
+            'data' => $request,
+        ];
+        return response()->json($data);
+        
     }
 
     public function activate($id)

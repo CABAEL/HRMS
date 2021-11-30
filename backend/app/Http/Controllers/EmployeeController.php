@@ -1,6 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\User;
+use App\Models\Employee;
+use App\Models\User_profile;
 
 use Illuminate\Http\Request;
 
@@ -11,10 +14,18 @@ class EmployeeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $employee_id = $request->id;
+
+        $qry = User::join('user_profiles', 'users.id', '=', 'user_profiles.id')
+        ->join('employees','employees.user_id','=','users.id')
+        ->where('employees.employee_id','=',$employee_id)
+        ->get();
+
+        return $qry;
     }
+
 
     /**
      * Show the form for creating a new resource.

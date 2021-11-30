@@ -1,9 +1,10 @@
 <footer class="sticky-footer">
     <div class="container">
         <div class="text-center">
-            <small>Copyright &copy; Your Website 2017</small>
+            <small>Copyright &copy; {{env('APP_NAME')}} 2021</small>
         </div>
     </div>
+    @include('template.hr_head.segments.modal.edit_job_modal')    
 </footer>
 <!-- Scroll to Top Button -->
 <a class="scroll-to-top rounded" href="#page-top">
@@ -31,9 +32,9 @@
 </div>
 
 @include('template.hr_head.segments.modal.view_applicant_details_modal')
-@include('template.hr_head.segments.modal.add_user_modal')
-@include('template.hr_head.segments.modal.view_user_modal')
 @include('template.hr_head.segments.modal.add_job_modal')
+
+
 
 
 <!-- Bootstrap core JavaScript -->

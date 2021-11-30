@@ -81,10 +81,6 @@
     
   @include('template.hr_head.segments.footer')
   <script src="{{ asset('js/custom/chart.js') }}"></script>
-  <script>
-
-  </script>
-
   </body>
 
 </html>

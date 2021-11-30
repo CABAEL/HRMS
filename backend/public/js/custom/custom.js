@@ -15,7 +15,7 @@ function base_url(append)
 }
 
 function promt_errors(form='',element,e){
-
+  
     div = '';
     div += '<h6><b>'+e.responseJSON.message+'</b></h6>';
     $.each(e.responseJSON.errors,function(k,v) {

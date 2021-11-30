@@ -6,18 +6,23 @@ $.ajax({
       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
     },
     success: function(ret) {
-     // console.log(ret);
+      console.log(ret);
       var div = '';
 
       $.each(ret.data, function( index, value ) {
        // console.log( index + ": " + value.username );
-
+        if(value.mname == null){
+          mname="";
+        }
+        else{
+          mname = value.mname.toUpperCase()
+        }
         div +='<tr>'; 
-        div +='<td>'+value.username+'</td>';
-        div +='<td>'+value.role+'</td>';
-        div +='<td><button class="btn btn-sm btn-default viewuser" data-id="'+value.id+'"><i class="fa fa-user"></i></button></td>';
+        div +='<td>'+value.employee_id+'</td>';
+        div +='<td>'+value.lname.toUpperCase()+', '+value.fname.toUpperCase()+' '+mname+'</td>';
+        div +='<td><a target="_blank" href="'+base_url('employee_id/'+value.employee_id+'')+'"><button class="btn btn-sm btn-default" data-id="'+value.id+'"><i class="fa fa-book"></i> View Employee data</button></a></td>';
         div +='</tr>';
-        $('#UserListBody').html(div);
+        $('#EmployeeListBody').html(div);
       });
       
       $( "#employee-table").DataTable();

@@ -147,6 +147,7 @@ class ApplicantController extends Controller
             $employee_tbl = Employee::create([
                 'user_id'=>$user_id,
                 'employee_id'=>$this->incrementalHash().'-'.$user_id.'-'.$date,
+                'start_date'=>date('Y-d-m H:i:s'),
                 'applicant_data_id'=>$selected_applicant_data[0]['id'],
             ]);
     

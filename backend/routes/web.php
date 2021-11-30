@@ -8,8 +8,10 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\EmailController;
+use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\JobVacancyController;
 use App\Http\Controllers\FileUploadController;
+use App\Models\Employee;
 use GuzzleHttp\Middleware;
 
 /*
@@ -43,6 +45,7 @@ Route::resource('/register/add_user',ApplicantController::class);
 Route::post('login/login_post',[LoginController::class,'authenticate']);
 Route::get('/logout',[LogoutController::class,'logout_user'])->name('logout');
 //Route::post('login_post',[ 'as' => 'login', 'uses' => 'LoginController@authenticate']);
+
 
 //Route::post('google_auth',[LoginController::class,'google_auth']);
 Route::middleware(['auth','role'])->group(function(){
@@ -95,6 +98,10 @@ Route::middleware(['auth','role'])->group(function(){
         'as' => 'hr_head',
         ],function(){
 
+            Route::get('/employee_id/{id}',function(Request $request){
+                return view('template.hr_head.employee_page');
+            });
+
             Route::get('/',function(Request $request){
                 return redirect('hr_head/home');
             })->name('hr_head_home');
@@ -129,7 +136,11 @@ Route::middleware(['auth','role'])->group(function(){
     
             Route::get('/activate_user/{id}',[UserController::class,'activate']);
 
-            Route::resource('/employee_list',UserController::class);
+            //Route::resource('/employee_list',UserController::class);
+            
+            Route::get('/employee_list',[UserController::class,'employeeList']);
+
+            Route::get('/employee/{id}',[EmployeeController::class,'index']);
     
             Route::put('/update_user_data/{id}',[UserController::class,'update']);
     
@@ -146,6 +157,8 @@ Route::middleware(['auth','role'])->group(function(){
             Route::post('add_user',[UserController::class,'store']);
         
             Route::resource('/job',JobVacancyController::class);
+            
+            //Route::put('/job/{id}',[JobVacancyController::class,'update']);
 
             Route::get('/applicant_details',[ApplicantController::class,'index']);
             
@@ -156,7 +169,6 @@ Route::middleware(['auth','role'])->group(function(){
             Route::post('/failed_applicant',[ApplicantController::class,'failedApplicant']);
 
             Route::post('/hire_applicant',[ApplicantController::class,'hireApplicant']);
-
             
 
     });
@@ -179,6 +191,7 @@ Route::middleware(['auth','role'])->group(function(){
 
             Route::resource('/job',JobVacancyController::class);
 
+
             Route::post('/add_applicant_details',[ApplicantController::class,'applicantDetails']);
 
             Route::get('/applicant_details',[ApplicantController::class,'index']);
@@ -186,9 +199,11 @@ Route::middleware(['auth','role'])->group(function(){
             Route::get('/user_applicant_details',[ApplicantController::class,'user']);
 
             Route::post('/upload_resume',[FileUploadController::class,'uploadResume']);
+
+
+
     });
 
-    Route::resource('user',UserController::class);
 
 });
     /*Route::post('/sendEmail',[EmailController::class,'send']);*/
