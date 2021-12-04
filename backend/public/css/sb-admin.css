@@ -35,16 +35,16 @@ preloader{
   background:rgba(0, 0, 0, 0.5);
   visibility: hidden;
 }
-.input-group-append{
-  width: 30px;
-  text-align: center;
-}
 .loader_gif{
   display: block;
   margin-left: auto;
   margin-right: auto;
  margin-top: 15%;
   width: 70px;
+}
+.input-group-append{
+  width: 30px;
+  text-align: center;
 }
 
 body.sticky-footer {

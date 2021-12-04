@@ -21,9 +21,6 @@
     <link href="{{ asset('css/sb-admin.css') }}" rel="stylesheet">
     
     <meta name="csrf-token" content="{{ csrf_token() }}" />
-    
-    <!--google API-->
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
-    <meta name="google-signin-client_id" content="758502627690-42ohe54rtt4m40i0upm8kmdhpae1k5nn.apps.googleusercontent.com">
-
+  
   </head>
+  <preloader id="preloader"><img src="{{asset('img/loader/loader.gif')}}" class="loader_gif"></preloader>

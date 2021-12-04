@@ -172,6 +172,8 @@ Route::middleware(['auth','role'])->group(function(){
             
 
     });
+
+
     Route::group([
         'prefix' => 'applicant',
         'as' => 'hr_head',
@@ -199,8 +201,16 @@ Route::middleware(['auth','role'])->group(function(){
             Route::get('/user_applicant_details',[ApplicantController::class,'user']);
 
             Route::post('/upload_resume',[FileUploadController::class,'uploadResume']);
+    });
 
+    Route::group([
+        'prefix' => 'employee',
+        'as' => 'employee',
+        ],function(){
 
+            Route::get('/home',function(Request $request){
+                return view('template.employee.index');
+            });
 
     });
 

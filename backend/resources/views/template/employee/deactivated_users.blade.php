@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-@include('template.employee.segments.header')
+@include('template.admin.segments.header')
   <body class="fixed-nav sticky-footer bg-dark" id="page-top">
-  @include('template.employee.segments.navbar')
+  @include('template.admin.segments.navbar')
 
 
     <div class="content-wrapper">
@@ -16,7 +16,7 @@
 
         <!-- table list -->
         <!--<button class="btn btn-sm viewuser2">sample</button>-->
-        <table class="table table-bordered" width="100%" id="user-table" cellspacing="0">
+        <table class="table table-bordered" width="100%" id="deactivated" cellspacing="0">
                 <thead>
                   <tr>
                     <th>Username</th>
@@ -25,15 +25,16 @@
                   </tr>
                 </thead>
                
-                <tbody id="UserListBody"></tbody>
-
+                <tbody id="DeactivatedUserListBody"></tbody>
         </table>
       </div>
       <!-- /.container-fluid -->
     </div>
     <!-- /.content-wrapper -->
     
-  @include('template.employee.segments.footer')
+  @include('template.admin.segments.footer')
+  <script src="{{ asset('js/custom/page/deactivated_user.js') }}"></script>
+  
 
   <script>
 
