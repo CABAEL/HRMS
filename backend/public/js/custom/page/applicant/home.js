@@ -88,6 +88,7 @@ $('#ApplicationDetails').on('click',function(event){
 });  
 
 });
+
 $('#uploadResume').on('click',function(event){
   //console.log('sss');
 

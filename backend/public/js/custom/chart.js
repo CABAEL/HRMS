@@ -93,8 +93,9 @@ var myLineChart = new Chart(active_employees_data, {
       backgroundColor: "#ace",
       borderColor: "rgba(38, 38, 1,1)",
       data: [
-        12
-        , 1
+        12, 
+        1,
+        3
       ],
     }],
   },

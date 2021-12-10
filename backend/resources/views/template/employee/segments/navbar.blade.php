@@ -33,6 +33,6 @@
           </li>
 
         </ul>
-        @include('template.admin.segments.leftnav')
+        @include('template.employee.segments.leftnav')
       </div>
     </nav>

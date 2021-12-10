@@ -21,6 +21,15 @@
     <link href="{{ asset('css/sb-admin.css') }}" rel="stylesheet">
     
     <meta name="csrf-token" content="{{ csrf_token() }}" />
-  
+    <style>
+      #time{
+        font-family:Tahoma;
+        font-size: 50px;
+        font-weight: bold;
+      }
+    </style>
   </head>
   <preloader id="preloader"><img src="{{asset('img/loader/loader.gif')}}" class="loader_gif"></preloader>
+  <?php
+      date_default_timezone_set('Asia/Manila');
+  ?>

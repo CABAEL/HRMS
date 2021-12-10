@@ -12,20 +12,21 @@ $user_dir = $exploded_url[4];
                 Home</span>
             </a>
           </li>
+
           <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
-            <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseComponents" data-parent="#exampleAccordion">
-              <i class="fa fa-fw fa-users"></i>
+            <a class="nav-link" href="/admin/home" data-parent="#exampleAccordion">
+              <i class="fa fa-fw fa-home"></i>
               <span class="nav-link-text">
-              User Accounts</span>
+                Pay Slip History</span>
             </a>
-            <ul class="sidenav-second-level collapse" id="collapseComponents">
-              <li>
-                <a class="leftnavtext" id="adduser">Add User</a>
-              </li>
-              <li>
-                <a class="leftnavtext" href="/admin/deactivated_users">Deactivated User</a>
-              </li>
-            </ul>
+          </li>
+
+          <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
+            <a class="nav-link" href="/admin/home" data-parent="#exampleAccordion">
+              <i class="fa fa-exclamation"></i> 
+              <span class="nav-link-text">
+                Events & Announcement</span>
+            </a>
           </li>
 
         </ul>

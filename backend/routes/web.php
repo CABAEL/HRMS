@@ -25,6 +25,11 @@ use GuzzleHttp\Middleware;
 |
 */
 
+Route::get('/', function (Request $request) {
+    return view('portal.index');
+});
+
+
 Route::get('/test', function (Request $request) {
     return Auth::user();
 });
@@ -97,6 +102,9 @@ Route::middleware(['auth','role'])->group(function(){
         'prefix' => 'hr_head',
         'as' => 'hr_head',
         ],function(){
+            Route::get('/get_payslip/{id}',[EmployeeController::class,'getEmployeePayslip']);
+            
+            Route::post('/employee_get_dtr',[EmployeeController::class,'getEmployeeDTR']);
 
             Route::get('/employee_id/{id}',function(Request $request){
                 return view('template.hr_head.employee_page');
@@ -170,13 +178,19 @@ Route::middleware(['auth','role'])->group(function(){
 
             Route::post('/hire_applicant',[ApplicantController::class,'hireApplicant']);
             
+            Route::post('/add_payslip',[EmployeeController::class,'addPayslip']);
+
+            
+
+            
+            
 
     });
 
 
     Route::group([
         'prefix' => 'applicant',
-        'as' => 'hr_head',
+        'as' => 'applicant',
         ],function(){
             
             Route::get('/logout',function(Request $request){
@@ -193,7 +207,6 @@ Route::middleware(['auth','role'])->group(function(){
 
             Route::resource('/job',JobVacancyController::class);
 
-
             Route::post('/add_applicant_details',[ApplicantController::class,'applicantDetails']);
 
             Route::get('/applicant_details',[ApplicantController::class,'index']);
@@ -201,16 +214,26 @@ Route::middleware(['auth','role'])->group(function(){
             Route::get('/user_applicant_details',[ApplicantController::class,'user']);
 
             Route::post('/upload_resume',[FileUploadController::class,'uploadResume']);
+
+           
     });
 
     Route::group([
         'prefix' => 'employee',
         'as' => 'employee',
         ],function(){
+            
+            Route::get('/logout',function(Request $request){
+                return redirect(route('logout'));
+            });
 
             Route::get('/home',function(Request $request){
                 return view('template.employee.index');
             });
+
+            Route::post('/employee_dtr',[EmployeeController::class,'employeeDTR']);
+
+            Route::get('/get_dtr',[EmployeeController::class,'getEmployeeDTR']);
 
     });
 

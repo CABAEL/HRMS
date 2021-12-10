@@ -49,8 +49,9 @@
 <!-- Custom js-->
 
 <script src="{{ asset('js/custom/preloader.js') }}"></script>
-<script src="{{ asset('js/custom/home.js') }}"></script>
 <script src="{{ asset('js/custom/custom.js') }}"></script>
-<script src="{{ asset('js/custom/ajax_request.js') }}"></script>
+<script src="{{ asset('js/custom/page/employee/home.js') }}"></script>
+
+
 
 

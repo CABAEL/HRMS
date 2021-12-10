@@ -19,6 +19,15 @@ $user_dir = $exploded_url[4];
                 Announcment And Events</span>
             </a>
           </li>
+
+          <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
+            <a class="nav-link" href="/hr_head/employees" data-parent="#exampleAccordion">
+              <i class="fa fa-fw fa-user"></i>
+              <span class="nav-link-text">
+                Employees</span>
+            </a>
+          </li>
+
           <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
             <a class="nav-link" href="/hr_head/applicants" data-parent="#exampleAccordion">
               <i class="fa fa-fw fa-user"></i>
@@ -33,13 +42,7 @@ $user_dir = $exploded_url[4];
                 Job Vacancies</span>
             </a>
           </li>
-          <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
-            <a class="nav-link" href="/hr_head/employees" data-parent="#exampleAccordion">
-              <i class="fa fa-fw fa-user"></i>
-              <span class="nav-link-text">
-                Employees</span>
-            </a>
-          </li>
+
           <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
             <a class="nav-link" href="" data-parent="#exampleAccordion">
               <i class="fa fa-fw fa-envelope"></i>

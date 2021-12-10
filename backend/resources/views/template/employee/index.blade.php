@@ -10,22 +10,29 @@
         <!-- Breadcrumbs -->
         <ol class="breadcrumb">
           <li class="breadcrumb-item">
-            <b>USER LIST</b>
+            <b>Daily Time Record</b>
           </li>
         </ol>
-
+        <br>
+        <label for="time">
+          <div id="time" class="" value=""></div>
+        </label>
+        <br>
         <!-- table list -->
-        <!--<button class="btn btn-sm viewuser2">sample</button>-->
-        <table class="table table-bordered" width="100%" id="user-table" cellspacing="0">
+        <button class="btn btn-lg btn-primary" id="punch_time" data-user_id={{Auth::user()->id;}}>Punch Time</button>
+        <br>
+        <br>
+
+        <table class="table table-bordered" width="100%" id="dtr-table" cellspacing="0">
                 <thead>
                   <tr>
-                    <th>Username</th>
-                    <th>User level</th>
-                    <th>---</th>
+                    <th>Date</th>
+                    <th>Time-in</th>
+                    <th>Time-out</th>
                   </tr>
                 </thead>
                
-                <tbody id="UserListBody"></tbody>
+                <tbody id="DTRListBody"></tbody>
 
         </table>
       </div>
