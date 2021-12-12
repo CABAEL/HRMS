@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\User_profile;
 use App\Models\Applicant_data;
+use App\Models\Applicant_experiences;
 use App\Models\Employee;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -279,7 +280,7 @@ class ApplicantController extends Controller
 
         $validated_request = $request->validate([
             'position' => 'required',
-            'about_self' => 'required',
+            //'about_self' => 'required',
             'resume_file' => 'required',
         ]);
 
@@ -310,21 +311,24 @@ class ApplicantController extends Controller
 
             $qry = Applicant_data::where('user_id',$user_id)->update([
                 'position_applied' => $validated_request['position'],
-                'about_self' => $validated_request['about_self'],
+                //'about_self' => $validated_request['about_self'],
                 'resume_link' => $filename
             ]);
 
-            /*$qry = Applicant_data::create(
-                [
-                    'user_id' => $user_id,
-                    'position_applied' => $validated_request['position'],
-                    'about_self' => $validated_request['about_self'],
-                    'resume_link' => $filename
-                ]
-            );*/
-    
-
         if($qry){
+        
+
+            foreach($request['prevcompany'] as $k => $v){
+
+                $add_applicant = Applicant_experiences::create([
+                    'user_id' => $user_id,
+                    'company_name' => $request['prevcompany'][$k],
+                    'position' => $request['prevposition'][$k],
+                    'from' => $request['from_date'][$k],
+                    'to' => $request['to_date'][$k],
+                ]);
+            }
+
             $data = [
                 'data' => $request,
                 'message' => 'Application details created successfully!'

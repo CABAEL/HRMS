@@ -101,7 +101,7 @@ $(document).on('click','.viewuser',function(event) {
       },
       error: function(e) {
         //alert(e.responseJSON.message +"<br>"+e.responseJSON.errors);
-        var element = $('#update_user_errors');
+        var element = $('#details_error');
         var form = '#viewusermodal'; 
         promt_errors(form,element,e);
   

@@ -27,7 +27,7 @@ use GuzzleHttp\Middleware;
 
 Route::get('/', function (Request $request) {
     return view('portal.index');
-});
+})->name('portal');
 
 
 Route::get('/test', function (Request $request) {

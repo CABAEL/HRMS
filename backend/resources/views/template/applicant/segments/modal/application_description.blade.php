@@ -29,12 +29,18 @@
                           </div>
                         </div>
                         <br>
-                        <div class="form-row">
-                        <div class="col-md-12">
+                        <label for="position">Work Experiences&nbsp;<a class="btn btn-sm btn-default" id="add_workexp"><i class="fa fa-plus"></i></a></label>
+                        
+                        <div class="form-row" style="" id="workexp">
+
+                        </div>
+
+                        <!--<div class="form-row">
+                              <div class="col-md-12">
                                 <label for="lname">Write something about yourself</label>
                                 <textarea name="about_self" id="about_self" class="form-control" cols="30" rows="10"></textarea>
-                            </div>
-                        </div>
+                              </div>
+                        </div>-->
                     </div>
                   </form>
                   
