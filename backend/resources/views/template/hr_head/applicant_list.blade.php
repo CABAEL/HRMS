@@ -15,7 +15,7 @@
 
         <!-- table recommended list -->
         <h5 class="text-center">Recommended List</h5>
-        <table class="table table-bordered" width="100%">
+        <table class="table table-bordered" width="100%" id="recommended" cellspacing="0">
           <thead>
             <tr>
               <th>Name</th>

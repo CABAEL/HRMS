@@ -49,13 +49,14 @@ class ApplicantController extends Controller
         return response()->json($data);
     }
     
-    /*public function recommended(){
+    public function recommended(){
 
         $exp = Applicant_experiences::get('user_id');
         //return $exp;
         $users = User_profile::
         join('applicant_datas','applicant_datas.user_id', '=', 'user_profiles.id')
         ->join('job_vacancies', 'job_vacancies.id', '=', 'applicant_datas.position_applied')
+        //->join('applicant_experiences', 'applicant_experiences.user_id', '=', 'user_profiles.id')
         ->select('*','applicant_datas.*', 'job_vacancies.name')
         ->whereIn('user_profiles.id',$exp)
         ->where('applicant_datas.status','!=',2)//declined
@@ -63,13 +64,14 @@ class ApplicantController extends Controller
         ->where('applicant_datas.status','!=',4)//hired
         ->get();
 
-        //return $users;
-       /* foreach($users as $k => $v){
+        //return $expinsert;
+       foreach($users as $k => $v){
             $exp = Applicant_experiences::where('user_id','=',$users[$k]['user_id'])->get();
-
-            if($exp){
-                return $exp;
-            }
+        
+            $exp_data[] = [
+                'user_id' => $users[$k]['user_id'],
+                'count' => count($exp),
+            ];
         }
         
 
@@ -77,13 +79,13 @@ class ApplicantController extends Controller
         $data = [
             'response_time' => LARAVEL_START,
             'count' => count($users),
-            'exp_count' = >
-            'data' => $users,
+            'exp' =>$exp_data ,
+            'user_data' => $users,
         ];
 
         return response()->json($data);
 
-    }*/
+    }
 
     public function user(Request $request){
 
@@ -353,18 +355,19 @@ class ApplicantController extends Controller
             ]);
 
         if($qry){
-        
+            if(isset($request['prevcompany'])){
+                foreach($request['prevcompany'] as $k => $v){
 
-            foreach($request['prevcompany'] as $k => $v){
-
-                $add_applicant = Applicant_experiences::create([
-                    'user_id' => $user_id,
-                    'company_name' => $request['prevcompany'][$k],
-                    'position' => $request['prevposition'][$k],
-                    'from' => $request['from_date'][$k],
-                    'to' => $request['to_date'][$k],
-                ]);
+                    $add_applicant = Applicant_experiences::create([
+                        'user_id' => $user_id,
+                        'company_name' => $request['prevcompany'][$k],
+                        'position' => $request['prevposition'][$k],
+                        'from' => $request['from_date'][$k],
+                        'to' => $request['to_date'][$k],
+                    ]);
+                }
             }
+
 
             $data = [
                 'data' => $request,

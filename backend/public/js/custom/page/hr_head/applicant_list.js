@@ -53,6 +53,61 @@ $.ajax({
     }
 });
 
+$.ajax({
+    url: base_url('recommendedlist'),
+    type: 'GET',
+    dataType: 'json',
+    headers: {
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+    },
+    success: function(ret) {
+     
+      var div = '';
+      $.each(ret.data, function( index, value ) {
+
+        var status = '';
+        if(value.status == 0){
+          status = "Pending";
+        }
+        if(value.status == 1){
+          status = "Accepted";
+          var applicant_action = ''
+          applicant_action +='<button class="btn btn-info btn-block" data-id="'+value.user_id+'" id="hire_applicant">Hire</button>'
+          $('#applicant_action').html(applicant_action);
+        }
+        if(value.status == 2){
+          status = "Rejected";
+        }
+        if(value.status == 3){
+          status = "Marked as failed";
+        }
+
+        if(value.status == 4){
+          status = "hired";
+        }
+
+        const d = value.created_at;
+        
+        var actual_date= d.substring(0, 10);
+
+        div +='<tr>'; 
+        div +='<td>'+value.lname+' '+value.fname+'</td>';
+        div +='<td>'+value.name+'</td>';
+        div +='<td>'+status+'</td>';
+        div +='<td>'+actual_date+'</td>';
+        div +='<td><button class="btn btn-sm btn-default viewApplicationDetails" data-id="'+value.user_id+'">View Application Details</button></td>';
+        div +='</tr>';
+        $('#recommendedList').html(div);
+      });
+      
+      $( "#recommended").DataTable();
+
+    },
+    error: function(e){
+
+    }
+});
+
 
 $(document).on("click",".viewApplicationDetails",function(e) {
 //$('').on('click',function() {
