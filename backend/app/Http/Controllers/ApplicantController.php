@@ -68,8 +68,8 @@ class ApplicantController extends Controller
        foreach($users as $k => $v){
             $exp = Applicant_experiences::where('user_id','=',$users[$k]['user_id'])->get();
         
-            $exp_data[] = [
-                'user_id' => $users[$k]['user_id'],
+            $exp_data[$v['user_id']] = [
+                //'user_id' => $users[$k]['user_id'],
                 'count' => count($exp),
             ];
         }

@@ -22,6 +22,7 @@
               <th>Position applied</th>
               <th>Application Status</th>
               <th>Date Applied</th>
+              <th>exp</th>
               <th>---</th>
             </tr>
           </thead>

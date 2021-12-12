@@ -61,9 +61,9 @@ $.ajax({
       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
     },
     success: function(ret) {
-     
+     //console.log(ret);
       var div = '';
-      $.each(ret.data, function( index, value ) {
+      $.each(ret.user_data, function( index, value ) {
 
         var status = '';
         if(value.status == 0){
@@ -86,6 +86,12 @@ $.ajax({
           status = "hired";
         }
 
+        //console.log();
+
+        /*if(){
+          var exp_result = ret.exp[value.user_id];
+        }*/
+
         const d = value.created_at;
         
         var actual_date= d.substring(0, 10);
@@ -95,13 +101,21 @@ $.ajax({
         div +='<td>'+value.name+'</td>';
         div +='<td>'+status+'</td>';
         div +='<td>'+actual_date+'</td>';
+        div +='<td>'+ret.exp[value.user_id]['count']+'</td>';
         div +='<td><button class="btn btn-sm btn-default viewApplicationDetails" data-id="'+value.user_id+'">View Application Details</button></td>';
         div +='</tr>';
         $('#recommendedList').html(div);
       });
       
-      $( "#recommended").DataTable();
+     //$( "#recommended").DataTable();
+     var recommended_table = $('#recommended').DataTable({
+      "ordering": true,
+      "bFilter": false,
+      "aoColumnDefs": [{ "bVisible": false, "aTargets": [4] }]
+      });
 
+      recommended_table.order( [ 5, 'asc' ] ).draw();
+      
     },
     error: function(e){
 
