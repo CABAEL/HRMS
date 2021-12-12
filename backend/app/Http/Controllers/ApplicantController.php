@@ -7,6 +7,7 @@ use App\Models\Applicant_data;
 use App\Models\Applicant_experiences;
 use App\Models\Employee;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 
@@ -48,6 +49,42 @@ class ApplicantController extends Controller
         return response()->json($data);
     }
     
+    /*public function recommended(){
+
+        $exp = Applicant_experiences::get('user_id');
+        //return $exp;
+        $users = User_profile::
+        join('applicant_datas','applicant_datas.user_id', '=', 'user_profiles.id')
+        ->join('job_vacancies', 'job_vacancies.id', '=', 'applicant_datas.position_applied')
+        ->select('*','applicant_datas.*', 'job_vacancies.name')
+        ->whereIn('user_profiles.id',$exp)
+        ->where('applicant_datas.status','!=',2)//declined
+        ->where('applicant_datas.status','!=',3)//failed
+        ->where('applicant_datas.status','!=',4)//hired
+        ->get();
+
+        //return $users;
+       /* foreach($users as $k => $v){
+            $exp = Applicant_experiences::where('user_id','=',$users[$k]['user_id'])->get();
+
+            if($exp){
+                return $exp;
+            }
+        }
+        
+
+        
+        $data = [
+            'response_time' => LARAVEL_START,
+            'count' => count($users),
+            'exp_count' = >
+            'data' => $users,
+        ];
+
+        return response()->json($data);
+
+    }*/
+
     public function user(Request $request){
 
         //return $request->user()->id;

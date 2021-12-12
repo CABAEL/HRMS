@@ -18,6 +18,6 @@ class Applicant_data extends Model
     ];
 
     protected $hidden = [
-        'id',
+        //'id',
     ];
 }

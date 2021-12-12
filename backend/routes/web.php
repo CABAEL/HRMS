@@ -180,6 +180,9 @@ Route::middleware(['auth','role'])->group(function(){
             
             Route::post('/add_payslip',[EmployeeController::class,'addPayslip']);
 
+
+            Route::get('/recommendedlist',[ApplicantController::class,'recommended']);
+
             
 
             

@@ -49,6 +49,11 @@ $.ajax({
        $('#ApplicationDetails').css('cursor','disabled');
      }
 
+     if(ret[0].resume_link != null){
+      $('.btn-info').attr('disabled','disabled');
+      $('.btn-info').css('cursor','disabled');
+     }
+
      $('#application_status').html(status);
     },
     error: function(e){

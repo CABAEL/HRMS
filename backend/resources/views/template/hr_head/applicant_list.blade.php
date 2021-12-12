@@ -13,7 +13,23 @@
           </li>
         </ol>
 
-        <!-- table list -->
+        <!-- table recommended list -->
+        <h5 class="text-center">Recommended List</h5>
+        <table class="table table-bordered" width="100%">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Position applied</th>
+              <th>Application Status</th>
+              <th>Date Applied</th>
+              <th>---</th>
+            </tr>
+          </thead>
+          <tbody id="recommendedList"></tbody>
+        </table>
+        <br>
+        <br>
+        <br>
         <!--<button class="btn btn-sm viewuser2">sample</button>-->
         <table class="table table-bordered" width="100%" id="applicant-table" cellspacing="0">
                 <thead>
