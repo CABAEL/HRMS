@@ -19,8 +19,8 @@ class UserSeeder extends Seeder
         DB::table('users')->insert
         (
             [
-            'username' => 'markv',
-            'password' => Hash::make('markadmin'),
+            'username' => 'admin',
+            'password' => Hash::make('admin'),
             'role' => 'admin',
             ],
         );
@@ -29,7 +29,7 @@ class UserSeeder extends Seeder
         (
             [
             'username' => 'hr_head',
-            'password' => Hash::make('markadmin'),
+            'password' => Hash::make('admin'),
             'role' => 'hr_head',
             ],
         );
@@ -38,10 +38,11 @@ class UserSeeder extends Seeder
         (
             [
             'username' => 'hr_assistant',
-            'password' => Hash::make('markadmin'),
+            'password' => Hash::make('admin'),
             'role' => 'hr_assistant',
             ],
         );
+
 
     }
 }
