@@ -25,24 +25,5 @@ class UserSeeder extends Seeder
             ],
         );
 
-        DB::table('users')->insert
-        (
-            [
-            'username' => 'hr_head',
-            'password' => Hash::make('admin'),
-            'role' => 'hr_head',
-            ],
-        );
-
-        DB::table('users')->insert
-        (
-            [
-            'username' => 'hr_assistant',
-            'password' => Hash::make('admin'),
-            'role' => 'hr_assistant',
-            ],
-        );
-
-
     }
 }
