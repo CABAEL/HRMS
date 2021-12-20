@@ -141,6 +141,10 @@ Route::middleware(['auth','role'])->group(function(){
             Route::get('/employees',function(){
                 return view('template.hr_head.employee_list');
             });
+
+            Route::get('/events_announcements',function(){
+                return view('template.hr_head.events_announcement');
+            });
     
             Route::get('/activate_user/{id}',[UserController::class,'activate']);
 
@@ -169,6 +173,8 @@ Route::middleware(['auth','role'])->group(function(){
             //Route::put('/job/{id}',[JobVacancyController::class,'update']);
 
             Route::get('/applicant_details',[ApplicantController::class,'index']);
+
+            Route::get('/applicant_chart/{id}',[ApplicantController::class,'getApplicantChart']);
             
             Route::post('/accept_applicant',[ApplicantController::class,'acceptApplicant']);
 

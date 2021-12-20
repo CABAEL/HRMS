@@ -13,7 +13,7 @@ $user_dir = $exploded_url[4];
             </a>
           </li>
           <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
-            <a class="nav-link" href="" data-parent="#exampleAccordion">
+            <a class="nav-link" href="/hr_head/events_announcements" data-parent="#exampleAccordion">
               <i class="fa fa-fw fa-exclamation"></i>
               <span class="nav-link-text">
                 Announcment And Events</span>

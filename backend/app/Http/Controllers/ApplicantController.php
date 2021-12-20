@@ -36,7 +36,8 @@ class ApplicantController extends Controller
             ->where('applicant_datas.status','!=',2)//declined
             ->where('applicant_datas.status','!=',3)//failed
             ->where('applicant_datas.status','!=',4)//hired
-            ->get();    
+            ->get();
+   
         }
 
 
@@ -119,6 +120,8 @@ class ApplicantController extends Controller
             'data' => $applicant_data,
             'message' => 'Applicant status updated!'
         ];
+
+         
 
         return response()->json($response);
 
@@ -312,6 +315,119 @@ class ApplicantController extends Controller
 
     }
 
+    public function getApplicantChart($id)
+    {
+        $applicants = Applicant_data::where('status','=',0)->get('created_at','status');
+        //0 = pending 1 = accepted 2 = declined 3 = failed 4 = hired
+
+        $data = array();
+        $jan = $feb = $mar = $apr = $may = $jun = $jul = $aug = $sep = $oct = $nov = $dec =  0;           
+        $jan1 = $feb1 = $mar1 = $apr1 = $may1 = $jun1 = $jul1 = $aug1 = $sep1 = $oct1 = $nov1 = $dec1 =  0;           
+        
+        foreach($applicants as $k => $v){
+          $date = date('d-m-Y', strtotime($v->created_at));
+          
+          $explode = explode('-',$date);
+
+         //echo var_dump($explode);
+
+          if($explode[2] == $id){
+            $year = $explode[2];
+            $month = $explode[1];
+            
+            if($month == 1){
+              $jan += 1;
+            }
+
+            if($month == 2){
+              $feb += 1;
+            }
+
+            if($month == 3){
+              $mar += 1;
+            }
+
+            if($month == 4){
+              $apr += 1;
+            }
+            
+            if($month == 5){
+              $may += 1;
+            }
+
+            if($month == 6){
+              $jun += 1;
+            }
+
+            if($month == 7){
+              $jul += 1;
+            }
+
+            if($month == 8){
+              $aug += 1;
+            }
+
+            if($month == 9){
+              $sep += 1;
+            }
+
+            if($month == 10){
+              $oct += 1;
+            }
+
+            if($month == 11){
+              $nov += 1;
+            }
+
+            if($month == 12){
+              $dec += 1;
+            }
+
+
+          }
+            
+
+        }
+
+        $data_pending = [
+            $jan,
+            $feb,
+            $mar,
+            $apr,
+            $may,
+            $jun,
+            $jul,
+            $aug,
+            $sep,
+            $oct,
+            $nov,
+            $dec,
+        ];
+
+        $data_hired = [
+            $jan1,
+            $feb1,
+            $mar1,
+            $apr1,
+            $may1,
+            $jun1,
+            $jul1,
+            $aug1,
+            $sep1,
+            $oct1,
+            $nov1,
+            $dec1,
+        ];
+
+        $response = [
+            'pending' => $data_pending,
+            'hired' => $data_hired,
+        ];
+
+        return response()->json($response);
+        die;
+        return $applicants;
+    }
     public function applicantDetails(Request $request)
     {
 
