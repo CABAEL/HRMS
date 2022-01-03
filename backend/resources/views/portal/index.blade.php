@@ -18,6 +18,39 @@
 <link rel="stylesheet" href="{{asset('portal/css/animate.min.css')}}">
 <link rel="stylesheet" href="{{asset('portal/css/font-icon.css')}}">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+<style>
+  .announcement_div{
+    width: 100%;
+    height: auto;
+    background: #ace;
+    border-radius: 5px;
+    padding: 10px;
+    margin-top:20px;
+    border: solid 1px #ccc;
+  }
+  .event_div{
+    width: 100%;
+    height: auto;
+    background: #fff7a3;
+    border-radius: 5px;
+    padding: 10px;
+    margin-top:20px;
+    border: solid 1px #ccc;
+  }
+  .post_decriptions{
+    background-color:#fff;
+    padding: 5px;
+  }
+  .events_cont,.announcement_cont{
+    height:500px;
+    background:#fff;
+    overflow-Y:scroll;
+    padding:2px;
+  }
+  #event-form{
+    padding: 5px;
+  }
+</style>
 </head>
 
 <body>
@@ -51,14 +84,17 @@
 </section>
 <!-- header section --> 
 <!-- about section -->
+<hr>
+<center>------------------ *** Whiteboard *** ------------------</center>
+<hr>
 <section id="Events" class="">
   <div class="container-fluid">
     <div class="row">
-      <div class="col-md-6">
-        nbsp;
+      <div class="col-md-6 events_cont container">
+        
       </div>
-      <div class="col-md-6">
-        nbsp;
+      <div class="col-md-6 announcement_cont container">
+       
       </div>
     </div>
   </div>
@@ -68,10 +104,10 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-6">
-        nbsp;
+   
       </div>
       <div class="col-md-6">
-        nbsp;
+
       </div>
     </div>
   </div>
@@ -129,5 +165,101 @@
 <script src="{{asset('portal/js/retina.min.js')}}"></script> 
 <script src="{{asset('portal/js/modernizr.js')}}"></script> 
 <script src="{{asset('portal/js/main.js')}}"></script>
+
+<script src="{{ asset('js/custom/custom.js') }}"></script>
+
+<script>
+  $.ajax({
+    url: base_url('portal_event'),
+    type: 'get',
+    dataType: 'json',
+    headers: {
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+    },
+    success: function(ret){
+       console.log(ret);
+       var eventdiv = '<center><h4>Events</h4></center>';
+       if(ret == ''){
+        eventdiv += "<br><br><center>No event posted.</center>";
+       }else{
+       $.each(ret,function(event_k,event_v) {
+       
+       var d1 = new Date(event_v.date);
+       var d2 = new Date(event_v.created_at);
+       var datestring1 = d1.toLocaleString('en-US', { timeZone: 'Asia/Manila' });
+       var datestring2 = d2.toLocaleString('en-US', { timeZone: 'Asia/Manila' });
+       
+        eventdiv += "<div class='event_div'>";
+        //eventdiv += "<i class='fa fa-fw fa-close pull-right close DeleteEvent' data-id='"+event_v.id+"'></i>";
+        eventdiv += '<h6><b>'+event_v.title+' <span style="color:red;">(Event Date: '+datestring1+')</span></b></h6>';
+        eventdiv += '<p style="font-size:12px;">Posted on: '+datestring2+'</p>';
+        eventdiv += '<hr>';
+        eventdiv += '<div class="post_decriptions">'+event_v.description+'</div>';
+        //eventdiv += '<br><button><i class="fa fa fa-edit close updateEvent" data-id="'+event_v.id+'"></i></button><br>';
+        eventdiv += "</div>";
+  
+       });
+       }
+       
+
+  
+       $('.events_cont').html(eventdiv);
+
+       //$('#events-table').DataTable();
+    },
+    error: function(e){
+  
+      alert('Error on events table!');
+  
+    }
+  });
+  
+  $.ajax({
+    url: base_url('portal_announcement'),
+    type: 'get',
+    dataType: 'json',
+    headers: {
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+    },
+    success: function(ret){
+       console.log(ret);
+
+       var announcementdiv = '<center><h4>Announcements</h4></center>';
+      
+       if(ret == ''){
+        announcementdiv += "<br><br><center>No announcement posted.</center>";
+       }else{
+
+       
+       $.each(ret,function(announcement_k,announcement_v){
+        var d = new Date(announcement_v.created_at);
+        var datestring = d.toLocaleString('en-US', { timeZone: 'Asia/Manila' });
+  
+        announcementdiv += "<div class='announcement_div'>";
+        //announcementdiv += "<i class='fa fa-fw fa-close pull-right close DeleteAnnouncement' data-id='"+announcement_v.id+"'></i>";
+        announcementdiv += '<center><h6><b>'+announcement_v.title+'</b></h6>';
+        announcementdiv += '<p style="font-size:12px;">Posted on: '+datestring+'</p></center>';
+        announcementdiv += '<hr>';
+        announcementdiv += '<div class="post_decriptions">'+announcement_v.description+'</div>';
+        //announcementdiv += '<br><button><i class="fa fa fa-edit close updateAnnouncement" data-id="'+announcement_v.id+'"></i></button><br>';
+        announcementdiv += "</div>";
+  
+       });
+
+       }
+  
+
+  
+       $('.announcement_cont').html(announcementdiv);
+
+    },  
+    error: function(e){
+  
+      alert('Error on events table!');
+  
+    }
+  });
+
+</script>
 </body>
 </html>

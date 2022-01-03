@@ -8,9 +8,12 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\EmailController;
+use App\Http\Controllers\AnnouncementController;
+use App\Http\Controllers\EventController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\JobVacancyController;
 use App\Http\Controllers\FileUploadController;
+use App\Http\Controllers\ChatController;
 use App\Models\Employee;
 use GuzzleHttp\Middleware;
 
@@ -52,6 +55,12 @@ Route::get('/logout',[LogoutController::class,'logout_user'])->name('logout');
 //Route::post('login_post',[ 'as' => 'login', 'uses' => 'LoginController@authenticate']);
 
 
+
+//portal get routes
+Route::get('/portal_event',[EventController::class,'index']);
+Route::get('/portal_announcement',[AnnouncementController::class,'index']);
+
+
 //Route::post('google_auth',[LoginController::class,'google_auth']);
 Route::middleware(['auth','role'])->group(function(){
 
@@ -59,6 +68,13 @@ Route::middleware(['auth','role'])->group(function(){
         'prefix' => 'admin',
         'as' => 'admin',
         ],function(){
+
+       
+        Route::get('/chat_support',function(Request $request){
+            return view('template.admin.chat_support');
+        });
+        Route::resource('/chat',ChatController::class);
+        Route::get('/getAdminChats',[ChatController::class,'getAdminChats']);
         
         Route::get('/',function(Request $request){
             return redirect('admin/home');
@@ -102,9 +118,16 @@ Route::middleware(['auth','role'])->group(function(){
         'prefix' => 'hr_head',
         'as' => 'hr_head',
         ],function(){
+
+            Route::resource('/chat',ChatController::class);
+
             Route::get('/get_payslip/{id}',[EmployeeController::class,'getEmployeePayslip']);
             
             Route::post('/employee_get_dtr',[EmployeeController::class,'getEmployeeDTR']);
+
+            Route::get('/chat_support',function(Request $request){
+                return view('template.hr_head.chat_support');
+            });
 
             Route::get('/employee_id/{id}',function(Request $request){
                 return view('template.hr_head.employee_page');
@@ -186,8 +209,13 @@ Route::middleware(['auth','role'])->group(function(){
             
             Route::post('/add_payslip',[EmployeeController::class,'addPayslip']);
 
+            Route::get('active_employee/{id}',[EmployeeController::class,'activeEmployee']);
 
             Route::get('/recommendedlist',[ApplicantController::class,'recommended']);
+
+            Route::resource('/event',EventController::class);
+
+            Route::resource('/announcement',AnnouncementController::class);
 
     });
 
@@ -277,6 +305,8 @@ Route::middleware(['auth','role'])->group(function(){
 
             Route::get('/recommendedlist',[ApplicantController::class,'recommended']);
 
+            Route::resource('/event',EventController::class);
+
     });
 
 
@@ -314,6 +344,8 @@ Route::middleware(['auth','role'])->group(function(){
         'prefix' => 'employee',
         'as' => 'employee',
         ],function(){
+
+            Route::get('/get_payslip/{id}',[EmployeeController::class,'getEmployeePayslip']);
             
             Route::get('/logout',function(Request $request){
                 return redirect(route('logout'));
@@ -323,9 +355,15 @@ Route::middleware(['auth','role'])->group(function(){
                 return view('template.employee.index');
             });
 
+            Route::get('/payslip',function(Request $request){
+                return view('template.employee.payslip');
+            });
+
             Route::post('/employee_dtr',[EmployeeController::class,'employeeDTR']);
 
             Route::get('/get_dtr',[EmployeeController::class,'getEmployeeDTR']);
+
+            Route::get('/user_info/{id}',[UserController::class,'user_info']);
 
     });
 

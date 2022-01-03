@@ -55,5 +55,9 @@
 <script src="{{ asset('js/custom/custom.js') }}"></script>
 <script src="{{ asset('js/custom/ajax_request.js') }}"></script>
 
+<script src="{{ asset('packages/tinymce/jquery.tinymce.min.js') }}"></script>
+<script src="{{ asset('packages/tinymce/tinymce.min.js') }}"></script>
+<script src="{{ asset('js/custom/page/hr_head/event_announcement.js') }}"></script>
+
 
 

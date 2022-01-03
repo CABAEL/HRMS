@@ -18,9 +18,9 @@
 
               <div class="dropdown-divider"></div>
 
-              <a class="dropdown-item btn text-info" data-toggle="modal" data-target="#logoutmodal">
+              <a class="dropdown-item btn .viewuser" id="viewuser">
               <i class="fa fa-fw fa-user"></i>
-              My Account<br>
+              My Info<br>
               </a>
 
               <a class="dropdown-item btn" data-toggle="modal" data-target="#logoutmodal">

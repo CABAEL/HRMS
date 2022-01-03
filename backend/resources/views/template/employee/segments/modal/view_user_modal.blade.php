@@ -90,34 +90,12 @@
                     
                     </div>
                     </div>
-
-                    <div class="form-group">
-                        <div class="form-row">
-                          <div class="col-md-6">
-                            <label for="retypePassword">Reset Password</label>
-                            <div class="input-group">
-                              <input type="text" class="form-control" id="update_password" name="update_password" readonly/>
-                              
-                          </div>  
-                          </div>
-
-                        </div>
-                    </div>
-                  </form>
-                  <button class="btn btn-sm" id="generate_pass"><i class="fa fa-recycle"></i> Generate</button>
-                  <button class="btn btn-sm btn-default" id="copy" onclick="copy_text('#update_password')"><i class="fa fa-copy"></i> Copy</button> 
-                  <button class="btn btn-sm btn-info" id="clear"><i class="fa fa-clear"></i> Clear</button>
-
                 </div>
             </div>
             <div class="modal-footer">
 
-                <button class="btn btn-primary btn-block" id="updateAccount">Update</button>
-                <br>
-                <button class="btn btn-default btn-block deactivate">Deactivate</button>
-                <br>
-                <button class="btn btn-danger btn-block delete">Delete</button>
 
         </div>
     </div>
 </div>
+

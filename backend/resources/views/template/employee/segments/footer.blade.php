@@ -31,8 +31,8 @@
 </div>
 
 
-@include('template.admin.segments.modal.add_user_modal')
-@include('template.admin.segments.modal.view_user_modal')
+
+@include('template.employee.segments.modal.view_user_modal')
 
 
 <!-- Bootstrap core JavaScript -->
@@ -51,6 +51,57 @@
 <script src="{{ asset('js/custom/preloader.js') }}"></script>
 <script src="{{ asset('js/custom/custom.js') }}"></script>
 <script src="{{ asset('js/custom/page/employee/home.js') }}"></script>
+
+<script>
+    $(document).on('click','#viewuser',function(event) {
+      event.preventDefault();
+      var id = "{{Auth::user()->id}}";
+      //alert(base_url("user_info/"+id));
+      show_loader();
+      $.ajax({
+        url: base_url("user_info/"+id),
+        type: 'GET', 
+        dataType: 'json',
+        headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+        },
+        success: function(data){
+    
+          hide_loader();
+    
+          $('#viewusermodal #update').attr('data-id',data.id);
+          $('#viewusermodal #update_fname').val(data.fname);
+          $('#viewusermodal #update_mname').val(data.mname);
+          $('#viewusermodal #update_lname').val(data.lname);
+    
+          $('#viewusermodal #update_age').val(data.age);
+          $("#viewusermodal option[value="+data.gender+"]").attr('selected','selected');
+          $('#viewusermodal #update_birthday').val(data.birthday);
+          $('#viewusermodal #update_address').val(data.address);
+    
+          $('#viewusermodal #update_email').val(data.email);
+          $('#viewusermodal #update_username').val(data.username);
+          $('#viewusermodal #update_mobile_number').val(data.mobile_number);
+          $("#viewusermodal option[value="+data.role+"]").attr('selected','selected');
+    
+          $("#viewusermodal #updateAccount").attr('data-id',id);
+          
+          $("#viewusermodal .deactivate").attr('data-id',id);
+    
+          $("#viewusermodal .delete").attr('data-id',id);
+    
+          $('#viewusermodal').modal('toggle');
+          $('#viewusermodal :input').attr('disabled', 'true');
+          console.log(data);
+        },
+        error: function(e) {
+          
+          hide_loader();
+        }
+      });
+    
+    });
+    </script>
 
 
 

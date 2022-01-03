@@ -151,8 +151,9 @@ function clear_modal_promt(modal) {
 }
 
 function clear(element) {
-$el = $(element);
-  return $el.val('');
+
+  return element.val('');
+
 }
 
 function copy_text(element) {
@@ -167,7 +168,8 @@ navigator.clipboard.writeText(copyText.val());
 }
 
 $(document).on("click","#clear",function() {
-  clear('#viewusermodal #password');
+  var pass = $('#viewusermodal #update_password');
+  clear(pass);
 });
 
 $(document).on("click","#generate_pass",function() {

@@ -28,6 +28,19 @@ $user_dir = $exploded_url[4];
             </ul>
           </li>
 
+          <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
+            <br>
+            
+            <br>
+            <br>
+            <br>
+            <a class="nav-link" href="/admin/chat_support" data-parent="#exampleAccordion">
+              <i class="fa fa-fw fa-envelope"></i>
+              <span class="nav-link-text">
+                Chat Support</span>
+            </a>
+          </li>
+
         </ul>
         <ul class="navbar-nav sidenav-toggler">
           <li class="nav-item">

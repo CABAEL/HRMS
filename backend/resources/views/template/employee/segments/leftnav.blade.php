@@ -14,18 +14,18 @@ $user_dir = $exploded_url[4];
           </li>
 
           <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
-            <a class="nav-link" href="/admin/home" data-parent="#exampleAccordion">
+            <a class="nav-link" href="/employee/payslip" data-parent="#exampleAccordion">
               <i class="fa fa-fw fa-home"></i>
               <span class="nav-link-text">
                 Pay Slip History</span>
             </a>
           </li>
-
+          
           <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
-            <a class="nav-link" href="/admin/home" data-parent="#exampleAccordion">
-              <i class="fa fa-exclamation"></i> 
+            <a class="nav-link" href="/employee/payslip" data-parent="#exampleAccordion">
+              <i class="fa fa-fw fa-envelope"></i>
               <span class="nav-link-text">
-                Events & Announcement</span>
+                Chat</span>
             </a>
           </li>
 

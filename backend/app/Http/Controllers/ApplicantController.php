@@ -26,6 +26,7 @@ class ApplicantController extends Controller
             $users = User_profile::
             join('applicant_datas', 'applicant_datas.user_id', '=', 'user_profiles.id')
             ->join('job_vacancies', 'job_vacancies.id', '=', 'applicant_datas.position_applied')
+            ->select('*','applicant_datas.status AS application_status')
             ->where('user_id','=',$user)
             ->get(); 
         }else{
@@ -66,6 +67,7 @@ class ApplicantController extends Controller
         ->get();
 
         //return $expinsert;
+        $exp_data = array();
        foreach($users as $k => $v){
             $exp = Applicant_experiences::where('user_id','=',$users[$k]['user_id'])->get();
         
@@ -317,14 +319,16 @@ class ApplicantController extends Controller
 
     public function getApplicantChart($id)
     {
-        $applicants = Applicant_data::where('status','=',0)->get('created_at','status');
+        $prending_applicants = Applicant_data::where('status','=',0)->get('created_at','status');
+        $hired_applicants = Applicant_data::where('status','=',4)->get('created_at','status');
         //0 = pending 1 = accepted 2 = declined 3 = failed 4 = hired
 
         $data = array();
         $jan = $feb = $mar = $apr = $may = $jun = $jul = $aug = $sep = $oct = $nov = $dec =  0;           
         $jan1 = $feb1 = $mar1 = $apr1 = $may1 = $jun1 = $jul1 = $aug1 = $sep1 = $oct1 = $nov1 = $dec1 =  0;           
         
-        foreach($applicants as $k => $v){
+        foreach($prending_applicants as $k => $v){
+
           $date = date('d-m-Y', strtotime($v->created_at));
           
           $explode = explode('-',$date);
@@ -335,52 +339,54 @@ class ApplicantController extends Controller
             $year = $explode[2];
             $month = $explode[1];
             
-            if($month == 1){
-              $jan += 1;
-            }
-
-            if($month == 2){
-              $feb += 1;
-            }
-
-            if($month == 3){
-              $mar += 1;
-            }
-
-            if($month == 4){
-              $apr += 1;
-            }
-            
-            if($month == 5){
-              $may += 1;
-            }
-
-            if($month == 6){
-              $jun += 1;
-            }
-
-            if($month == 7){
-              $jul += 1;
-            }
-
-            if($month == 8){
-              $aug += 1;
-            }
-
-            if($month == 9){
-              $sep += 1;
-            }
-
-            if($month == 10){
-              $oct += 1;
-            }
-
-            if($month == 11){
-              $nov += 1;
-            }
-
-            if($month == 12){
-              $dec += 1;
+            if($year == $id){
+                if($month == 1){
+                    $jan += 1;
+                  }
+      
+                  if($month == 2){
+                    $feb += 1;
+                  }
+      
+                  if($month == 3){
+                    $mar += 1;
+                  }
+      
+                  if($month == 4){
+                    $apr += 1;
+                  }
+                  
+                  if($month == 5){
+                    $may += 1;
+                  }
+      
+                  if($month == 6){
+                    $jun += 1;
+                  }
+      
+                  if($month == 7){
+                    $jul += 1;
+                  }
+      
+                  if($month == 8){
+                    $aug += 1;
+                  }
+      
+                  if($month == 9){
+                    $sep += 1;
+                  }
+      
+                  if($month == 10){
+                    $oct += 1;
+                  }
+      
+                  if($month == 11){
+                    $nov += 1;
+                  }
+      
+                  if($month == 12){
+                    $dec += 1;
+                  }
             }
 
 
@@ -404,6 +410,78 @@ class ApplicantController extends Controller
             $dec,
         ];
 
+
+        foreach($hired_applicants as $k => $v){
+
+            $date1 = date('d-m-Y', strtotime($v->created_at));
+            
+            $explode1 = explode('-',$date1);
+  
+           //echo var_dump($explode);
+  
+            if($explode1[2] == $id){
+
+              $year = $explode1[2];
+
+              $month1 = $explode1[1];
+              
+            if($year == $id){
+
+                if($month1 == 1){
+                    $jan1 += 1;
+                  }
+      
+                  if($month1 == 2){
+                    $feb1 += 1;
+                  }
+      
+                  if($month1 == 3){
+                    $mar1 += 1;
+                  }
+      
+                  if($month1 == 4){
+                    $apr1 += 1;
+                  }
+                  
+                  if($month1 == 5){
+                    $may1 += 1;
+                  }
+      
+                  if($month1 == 6){
+                    $jun1 += 1;
+                  }
+      
+                  if($month1 == 7){
+                    $jul1 += 1;
+                  }
+      
+                  if($month1 == 8){
+                    $aug1 += 1;
+                  }
+      
+                  if($month1 == 9){
+                    $sep1 += 1;
+                  }
+      
+                  if($month1 == 10){
+                    $oct1 += 1;
+                  }
+      
+                  if($month1 == 11){
+                    $nov1 += 1;
+                  }
+      
+                  if($month1 == 12){
+                    $dec1 += 1;
+                  }
+            }
+
+  
+            }
+              
+          }
+
+
         $data_hired = [
             $jan1,
             $feb1,
@@ -425,8 +503,7 @@ class ApplicantController extends Controller
         ];
 
         return response()->json($response);
-        die;
-        return $applicants;
+
     }
     public function applicantDetails(Request $request)
     {

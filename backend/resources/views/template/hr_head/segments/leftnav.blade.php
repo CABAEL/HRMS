@@ -16,7 +16,7 @@ $user_dir = $exploded_url[4];
             <a class="nav-link" href="/hr_head/events_announcements" data-parent="#exampleAccordion">
               <i class="fa fa-fw fa-exclamation"></i>
               <span class="nav-link-text">
-                Announcment And Events</span>
+                Announcement And Events</span>
             </a>
           </li>
 
@@ -44,10 +44,15 @@ $user_dir = $exploded_url[4];
           </li>
 
           <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
-            <a class="nav-link" href="" data-parent="#exampleAccordion">
+            <br>
+            
+            <br>
+            <br>
+            <br>
+            <a class="nav-link" href="/hr_head/chat_support" data-parent="#exampleAccordion">
               <i class="fa fa-fw fa-envelope"></i>
               <span class="nav-link-text">
-                Chat</span>
+                Chat Support</span>
             </a>
           </li>
           <!--<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">

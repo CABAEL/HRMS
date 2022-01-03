@@ -5,8 +5,8 @@ $.ajax({
     headers: {
       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
     },
+
     success: function(ret) {
-     
       var div = '';
       $.each(ret.data, function( index, value ) {
 
@@ -17,8 +17,8 @@ $.ajax({
         if(value.status == 1){
           status = "Accepted";
           var applicant_action = ''
-          applicant_action +='<button class="btn btn-info btn-block" data-id="'+value.user_id+'" id="hire_applicant">Hire</button>'
-          $('#applicant_action').html(applicant_action);
+          //applicant_action +='<button class="btn btn-info btn-block" data-id="'+value.user_id+'" id="hire_applicant">Hire</button>'
+          //$('#applicant_action').html(applicant_action);
         }
         if(value.status == 2){
           status = "Rejected";
@@ -72,8 +72,8 @@ $.ajax({
         if(value.status == 1){
           status = "Accepted";
           var applicant_action = ''
-          applicant_action +='<button class="btn btn-info btn-block" data-id="'+value.user_id+'" id="hire_applicant">Hire</button>'
-          $('#applicant_action').html(applicant_action);
+          //applicant_action +='<button class="btn btn-info btn-block" data-id="'+value.user_id+'" id="hire_applicant">Hire</button>'
+          //$('#applicant_action').html(applicant_action);
         }
         if(value.status == 2){
           status = "Rejected";
@@ -86,11 +86,6 @@ $.ajax({
           status = "hired";
         }
 
-        //console.log();
-
-        /*if(){
-          var exp_result = ret.exp[value.user_id];
-        }*/
 
         const d = value.created_at;
         
@@ -105,6 +100,8 @@ $.ajax({
         div +='<td><button class="btn btn-sm btn-default viewApplicationDetails" data-id="'+value.user_id+'">View Application Details</button></td>';
         div +='</tr>';
         $('#recommendedList').html(div);
+
+
       });
       
      //$( "#recommended").DataTable();
@@ -124,9 +121,8 @@ $.ajax({
 
 
 $(document).on("click",".viewApplicationDetails",function(e) {
-//$('').on('click',function() {
+
   var id = $(this).data('id');
-  console.log(id);
   $.ajax({
     url: base_url('applicant_details'),
     type: 'GET',
@@ -136,7 +132,7 @@ $(document).on("click",".viewApplicationDetails",function(e) {
       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
     },
     success: function(ret) {
-      console.log(ret);
+
       var name = "&nbsp;"+ret.data[0].lname+", "+ret.data[0].fname;
       var resume_link = '&nbsp;<a href="../upload/resume/'+ret.data[0].resume_link+'" target="_blank">View Resume</a>';
       var email = "&nbsp;"+ret.data[0].email;
@@ -144,6 +140,14 @@ $(document).on("click",".viewApplicationDetails",function(e) {
       var position = "&nbsp;"+ret.data[0].name;
       var self = "&nbsp;"+ret.data[0].about_self;
       var id = ret.data[0].user_id;
+
+      var applicant_action = ''
+      if(ret.data[0].application_status == 1){
+        applicant_action +='<button class="btn btn-info btn-block" data-id="'+ret.data[0].user_id+'" id="hire_applicant">Hire</button><br><button class="btn btn-danger btn-block" id="mark_as_failed">Mark as failed</button>'
+        $('#applicant_action').html(applicant_action);
+      }
+
+
 
       if(ret.data[0].resume_link == null){
         resume_link = '&nbsp;<a href="../upload/no_resume.pdf" target="_blank">View Resume</a>';
@@ -165,7 +169,7 @@ $(document).on("click",".viewApplicationDetails",function(e) {
       $('#mark_as_failed').attr('data-id',id);
 
       $('#viewApplicant').modal('toggle');
-
+      id = '';
     },
     error: function(e){
 

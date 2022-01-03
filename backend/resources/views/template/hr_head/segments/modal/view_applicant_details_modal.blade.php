@@ -36,10 +36,10 @@
                             <a id="applicant_resume_link"></a>
                         </div>
                         <br>
-                        <div class="form-row">
+                        <!--<div class="form-row">
                             About self: 
                             <span id="applicant_about_self"></span>
-                        </div>
+                        </div>-->
                         <br>
 
                     </div>
@@ -52,7 +52,7 @@
                 <br>
                 <button class="btn btn-default btn-block" id="decline_application">Decline</button>
                 <br>
-                <button class="btn btn-danger btn-block" id="mark_as_failed">Mark as failed</button>
+                
             </div>
     </div>
 </div>

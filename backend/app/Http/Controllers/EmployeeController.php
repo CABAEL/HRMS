@@ -250,8 +250,110 @@ class EmployeeController extends Controller
         //
     }
 
-    public function activeEmployee()
+    public function activeEmployee($id)
     {
+
+        $employees = Employee::where('end_date','=',null)->get();
+        
+        
+        $data = array();
+        $jan = $feb = $mar = $apr = $may = $jun = $jul = $aug = $sep = $oct = $nov = $dec =  0;
+        foreach($employees as $k => $v){
+
+            $data [] = [
+                'user_id' => $v->user_id,
+            ];
+
+
+            $employee_dtr = Dtr_employee::where('user_id','=',$v->user_id)->get();
+            $dtr_count = array();
+            $months = array();
+            foreach($employee_dtr as $employee_row){
+
+                $date = $employee_row['created_at']->format('Y-m-d H:i:s');
+
+                $explode = explode('-',$date);
+    
+                $year = $explode[0];
+                $month = $explode[1];
+
+                if($year === $id){
+
+                    $dtr_count[] = $employee_row['user_id'];
+
+
+                    if($month == 1){
+                        $jan += 1;
+                      }
+          
+                      if($month == 2){
+                        $feb += 1;
+                      }
+          
+                      if($month == 3){
+                        $mar += 1;
+                      }
+          
+                      if($month == 4){
+                        $apr += 1;
+                      }
+                      
+                      if($month == 5){
+                        $may += 1;
+                      }
+          
+                      if($month == 6){
+                        $jun += 1;
+                      }
+          
+                      if($month == 7){
+                        $jul += 1;
+                      }
+          
+                      if($month == 8){
+                        $aug += 1;
+                      }
+          
+                      if($month == 9){
+                        $sep += 1;
+                      }
+          
+                      if($month == 10){
+                        $oct += 1;
+                      }
+          
+                      if($month == 11){
+                        $nov += 1;
+                      }
+          
+                      if($month == 12){
+                        $dec += 1;
+                      }
+
+                }
+                $months = [
+                    $jan,
+                    $feb,
+                    $mar,
+                    $apr,
+                    $may,
+                    $jun,
+                    $jul,
+                    $aug,
+                    $sep,
+                    $oct,
+                    $nov,
+                    $dec,
+                ];
+                
+            }
+            $data[$k]['dtr_count'] = count($dtr_count);
+            $data[$k]['months'] = $months;
+            $jan = $feb = $mar = $apr = $may = $jun = $jul = $aug = $sep = $oct = $nov = $dec =  0;   
+        }
+        //end of each employee
+        return $data;
+        //return $employees;
 
     }
 }
