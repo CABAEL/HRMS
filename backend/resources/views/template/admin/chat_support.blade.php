@@ -35,6 +35,7 @@
             <thead>
               <tr>
                 <th>Inbox</th>
+                <th>---</th>
               </tr>
             </thead>
            
@@ -42,10 +43,11 @@
         </table>
         </div>
         <div class="col-md-6">
+          <input type="hidden" id="to_id">
           <div id="message_cont" style="height:350px;width:100%;background-color:#ace;padding:20px;overflow-y:scroll">
           </div>
           <br>
-          <input type="text" id="msg" class="form-control"><br><button class="btn btn-lg btn-default pull-right" id="send">Send</button>
+          <input type="text" id="msg" class="form-control" readonly><br><button class="btn btn-lg btn-default pull-right" id="send" disabled="disabled">Send</button>
         </div>
 
       </div>
@@ -65,52 +67,15 @@
   @include('template.admin.segments.footer')
 
   <script>
+    $('#to_id').val('no value');
 //setInterval(function () {
-  $.ajax({
-    url: base_url('chat'),
-    type: 'GET',
-    dataType: 'json',
-    headers: {
-      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
-    },
-    success: function(ret){
-       console.log(ret);
 
-       var chats = '';
-       var user = "{{Auth::user()->id}}";
-       var pull ='';
-
-       $.each(ret,function(k,v){
-
-        var d1 = new Date(v.created_at);
-        var datestring1 = d1.toLocaleString('en-US', { timeZone: 'Asia/Manila' });
-
-         if(v.from == user){
-          pull = 'from pull-right';
-         }else{
-          pull = 'to pull-left';
-         }
-
-
-        chats += '<div class="chat_cont '+pull+'">';
-        chats += ''+v.msg+'<p style="font-size:9px;">'+datestring1+'</p>';
-        chats += '</div><p class=""><p><br><br><br><br>';
-
-       });
-
-      $('#message_cont').html(chats);
-  
-    },
-    error: function(e){
-  
-    }
-  });
 //}, 300);
 
-
-
   $(document).on('click','#send',function(){
+
     var msg = $('#msg').val();
+    var to_id = $('#to_id').val();
 
     if(msg == ''){
       alert("Message required!");
@@ -121,7 +86,7 @@
     url: base_url('chat'),
     type: 'POST',
     dataType: 'json',
-    data:{msg:msg},
+    data:{msg:msg,to_id:to_id},
     headers: {
       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
     },
@@ -169,17 +134,24 @@
         if(v.chat[0].status == 0){
           newmsg = 'newmsg';
         }
+        var d1 = new Date(v.chat[0].created_at);
+        
+        var datestring1 = d1.toLocaleString('en-US', { timeZone: 'Asia/Manila' });
 
-        div += '<tr class="hover">';
+        div += '<tr class="hover userChat" data-id="'+v.user_id+'">';
         div += '<td class="'+newmsg+'">'+v.user+': '+v.chat[0].msg+'</td>';
+        div += '<td class="'+newmsg+'">'+datestring1+'</td>';
         div += '</tr>';
+
       }); 
 
       $('#chatTbody').html(div);
 
        hide_loader();
   
-       $('#chat-table').DataTable();
+       $('#chat-table').DataTable({
+        "order": [[ 1, "desc" ]]
+      } );
     },
     error: function(e){
   
@@ -187,6 +159,91 @@
   
     }
   });
+
+
+var myInterval =null;
+$(document).on('click','.userChat',function(){
+  var user_id = $(this).attr('data-id');
+  $('#to_id').val(user_id);
+  $('#msg').attr('readonly',false);
+  $('#send').attr('disabled',false);
+
+  myStopFunction();
+  myInterval = setInterval(function() {
+    show_loader();
+    htmlAppend(user_id);
+    hide_loader();
+  },1000);
+ // function() { funca(10,3); }
+
+});
+
+function myStopFunction() {
+  clearInterval(myInterval);
+}
+
+
+function htmlAppend(user_id){
+
+  var ajax_ret = $.ajax({
+    url: base_url('chat/')+user_id,
+    type: 'GET',
+    dataType: 'json',
+    headers: {
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+    },
+    success: function(ret){
+       console.log(ret);
+
+       var chats = '';
+       var user = "{{Auth::user()->id}}";
+       var pull ='';
+
+       $.each(ret,function(k,v){
+
+        var d1 = new Date(v.created_at);
+        var datestring1 = d1.toLocaleString('en-US', { timeZone: 'Asia/Manila' });
+
+         if(v.from == user){
+          pull = 'from pull-right';
+         }else{
+          pull = 'to pull-left';
+         }
+
+        chats += '<div class="chat_cont '+pull+'">';
+        chats += ''+v.msg+'<p style="font-size:9px;">'+v.username+': '+datestring1+'</p>';
+        chats += '</div><p class=""><p><br><br><br><br>';
+
+       });
+
+      $('#message_cont').html(chats);
+
+
+      $.ajax({
+      url: base_url('updateMsgsStatus/')+user_id,
+      type: 'GET',
+      dataType: 'json',
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+      },
+      success: function(ret){
+        
+         console.log(ret);
+      },
+      error: function(e){
+      
+      }
+      });
+
+  
+    },
+    error: function(e){
+  
+    }
+    });
+
+    return ajax_ret;
+}
   </script>
 
   </body>

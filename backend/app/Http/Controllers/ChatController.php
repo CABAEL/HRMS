@@ -45,15 +45,32 @@ class ChatController extends Controller
     {
         $id = Auth::user()->id;
 
-        $validated_request = $request->validate([
-            'msg' => 'required',
-        ]);
+        if(isset($request->to_id)){
+            
+            $validated_request = $request->validate([
+                'msg' => 'required',
+            ]);
+    
+            $qry = chat::create([
+                'from' => $id,
+                'to' => $request->to_id,
+                'msg' => $validated_request['msg'],
+            ]);
 
-        $qry = chat::create([
-            'from' => $id,
-            'to' => 1,
-            'msg' => $validated_request['msg'],
-        ]);
+        }else{
+            
+
+            $validated_request = $request->validate([
+                'msg' => 'required',
+            ]);
+    
+            $qry = chat::create([
+                'from' => $id,
+                'to' => 1,
+                'msg' => $validated_request['msg'],
+            ]);
+    
+        }
 
         if($qry){
 
@@ -73,10 +90,21 @@ class ChatController extends Controller
      * @param  \App\Models\chat  $chat
      * @return \Illuminate\Http\Response
      */
-    public function show(chat $chat)
+    public function show($id)
     {
-        //
+        //$id = Auth::user()->id;
+        return chat::join('users','users.id','=','chats.from')
+        ->whereRaw('chats.from = '.$id.' AND chats.to = 1 OR chats.from = 1 AND chats.to = '.$id.'')
+        ->orderBy('chats.id','DESC')
+        ->get();
     }
+
+    public function updateMsgsStatus($id)
+    {
+        //return $id;
+        return chat::where('from',$id)->update(['status'=>1]);
+    }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -134,6 +162,7 @@ class ChatController extends Controller
 
             $data[] = [
                 'user' => $user[0]['username'],
+                'user_id' => $user[0]['id'],
                 'chat' => $chat
             ];
 

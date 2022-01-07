@@ -44,6 +44,20 @@ class UserController extends Controller
             ];
         }
 
+        if(Auth::user()->role == "hr_assistant"){
+            $current_user = Auth::user()->id;
+            $request = User::all()
+            ->where('id', '!=' , $current_user)
+            ->where('status','!=',0)
+            ->where('role','!=','admin');
+            
+            $data = [
+                'response_time' => LARAVEL_START,
+                'count' => count($request),
+                'data' => $request,
+            ];
+        }
+
         
         return response()->json($data);
 
@@ -251,7 +265,7 @@ class UserController extends Controller
                 'update_address' => 'required',
                 'update_email' => 'required|email|max:60',
                 'update_mobile_number' => 'required|numeric',
-                'update_role' => 'required'
+                //'update_role' => 'required'
             ]);
         }
         else{

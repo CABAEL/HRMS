@@ -75,6 +75,7 @@ Route::middleware(['auth','role'])->group(function(){
         });
         Route::resource('/chat',ChatController::class);
         Route::get('/getAdminChats',[ChatController::class,'getAdminChats']);
+        Route::get('/updateMsgsStatus/{id}',[ChatController::class,'updateMsgsStatus']);
         
         Route::get('/',function(Request $request){
             return redirect('admin/home');
@@ -225,9 +226,16 @@ Route::middleware(['auth','role'])->group(function(){
         'prefix' => 'hr_assistant',
         'as' => 'hr_assistant',
         ],function(){
+            
+            Route::resource('/chat',ChatController::class);
+
             Route::get('/get_payslip/{id}',[EmployeeController::class,'getEmployeePayslip']);
             
             Route::post('/employee_get_dtr',[EmployeeController::class,'getEmployeeDTR']);
+
+            Route::get('/chat_support',function(Request $request){
+                return view('template.hr_assistant.chat_support');
+            });
 
             Route::get('/employee_id/{id}',function(Request $request){
                 return view('template.hr_assistant.employee_page');
@@ -264,6 +272,10 @@ Route::middleware(['auth','role'])->group(function(){
             Route::get('/employees',function(){
                 return view('template.hr_assistant.employee_list');
             });
+
+            Route::get('/events_announcements',function(){
+                return view('template.hr_assistant.events_announcement');
+            });
     
             Route::get('/activate_user/{id}',[UserController::class,'activate']);
 
@@ -292,6 +304,8 @@ Route::middleware(['auth','role'])->group(function(){
             //Route::put('/job/{id}',[JobVacancyController::class,'update']);
 
             Route::get('/applicant_details',[ApplicantController::class,'index']);
+
+            Route::get('/applicant_chart/{id}',[ApplicantController::class,'getApplicantChart']);
             
             Route::post('/accept_applicant',[ApplicantController::class,'acceptApplicant']);
 
@@ -303,9 +317,13 @@ Route::middleware(['auth','role'])->group(function(){
             
             Route::post('/add_payslip',[EmployeeController::class,'addPayslip']);
 
+            Route::get('active_employee/{id}',[EmployeeController::class,'activeEmployee']);
+
             Route::get('/recommendedlist',[ApplicantController::class,'recommended']);
 
             Route::resource('/event',EventController::class);
+
+            Route::resource('/announcement',AnnouncementController::class);
 
     });
 

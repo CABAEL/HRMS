@@ -21,13 +21,13 @@ $user_dir = $exploded_url[4];
             </a>
           </li>
           
-          <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
+          <!--<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
             <a class="nav-link" href="/employee/payslip" data-parent="#exampleAccordion">
               <i class="fa fa-fw fa-envelope"></i>
               <span class="nav-link-text">
                 Chat</span>
             </a>
-          </li>
+          </li>-->
 
         </ul>
         <ul class="navbar-nav sidenav-toggler">

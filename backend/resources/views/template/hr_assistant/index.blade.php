@@ -25,8 +25,8 @@
     <div class="col-sm-8 my-auto">
     <iframe class="chartjs-hidden-iframe" style="display: block; overflow: hidden; border: 0px none; margin: 0px; inset: 0px; height: 100%; width: 100%; position: absolute; pointer-events: none; z-index: -1;" tabindex="-1"></iframe>
     <div class="small text-muted">
-      <input type="number" min="1900" max="2099" step="1" value="2021" />
-      <button class="btn btn-sm btn-primary">Submit</button>
+      <input type="number" min="1900" max="2099" id="applicant_year" step="1"/>
+      <button class="btn btn-sm btn-primary" id="ApplicantChart">Submit</button>
       </div>  
       <br>
     <canvas id="applicants" style="display: block; height: 196px; width: 392px;" width="980" height="490"></canvas>
@@ -52,8 +52,8 @@
     <div class="col-sm-8 my-auto">
     <iframe class="chartjs-hidden-iframe" style="display: block; overflow: hidden; border: 0px none; margin: 0px; inset: 0px; height: 100%; width: 100%; position: absolute; pointer-events: none; z-index: -1;" tabindex="-1"></iframe>
     <div class="small text-muted">
-      <input type="number" min="1900" max="2099" step="1" value="2021" />
-      <button class="btn btn-sm btn-primary">Submit</button>
+      <input type="number" min="1900" max="2099" step="1" id="activeEmployeeYr" />
+      <button class="btn btn-sm btn-primary" id="activeEmployeeBtn">Submit</button>
         <br>
         <br>
       </div>  

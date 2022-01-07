@@ -10,18 +10,18 @@
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle mr-lg-2" href="#" id="alertsDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <i class="fa fa-fw fa-user"></i>
-              <span class="d-lg-none">Alerts
-                <span class="badge badge-pill badge-warning">6 New</span>
+              <!--<span class="d-lg-none">Alerts
+                <span class="badge badge-pill badge-warning">6 New</span>-->
               </span>
             </a>
             <div class="dropdown-menu" aria-labelledby="alertsDropdown">
 
               <div class="dropdown-divider"></div>
 
-              <a class="dropdown-item btn text-info" data-toggle="modal" data-target="#logoutmodal">
+              <!--<a class="dropdown-item btn text-info" data-toggle="modal" data-target="#logoutmodal">
               <i class="fa fa-fw fa-user"></i>
               My Account<br>
-              </a>
+              </a>-->
 
               <a class="dropdown-item btn" data-toggle="modal" data-target="#logoutmodal">
               <i class="fa fa-fw fa-sign-out"></i>

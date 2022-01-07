@@ -37,7 +37,7 @@ $user_dir = $exploded_url[4];
             <a class="nav-link" href="/admin/chat_support" data-parent="#exampleAccordion">
               <i class="fa fa-fw fa-envelope"></i>
               <span class="nav-link-text">
-                Chat Support</span>
+                Chat</span>
             </a>
           </li>
 

@@ -61,8 +61,8 @@
     <div class="header-content clearfix"> <a class="logo" href="#"><img src="images/logo.png" alt=""></a>
       <nav class="navigation" role="navigation">
         <ul class="primary-nav">
-          <li><a href="#Events">Events</a></li>
-          <li><a href="#Announcements">Announcements</a></li>
+          <li><a href="#Events">Events & Announcements</a></li>
+          <!--<li><a href="#Announcements">Announcements</a></li>-->
           <li><a href="{{route('login')}}">Login</a></li>
 
         </ul>
