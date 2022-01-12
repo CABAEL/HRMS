@@ -35,7 +35,7 @@ function promt_errors(form='',element,e){
     var smpl = form+' .alert';
     element.css('visibility','visible');
     $(form+' .alert').css('visibility','visible');
-    console.log(smpl)
+    //console.log(smpl)
     
   
 }

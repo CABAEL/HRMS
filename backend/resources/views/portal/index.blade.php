@@ -45,7 +45,7 @@
     height:500px;
     background:#fff;
     overflow-Y:scroll;
-    padding:2px;
+    padding:20px;
   }
   #event-form{
     padding: 5px;

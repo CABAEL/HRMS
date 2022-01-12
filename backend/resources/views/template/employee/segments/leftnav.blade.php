@@ -15,7 +15,7 @@ $user_dir = $exploded_url[4];
 
           <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
             <a class="nav-link" href="/employee/payslip" data-parent="#exampleAccordion">
-              <i class="fa fa-fw fa-home"></i>
+              <i class="fa fa-fw fa-book"></i>
               <span class="nav-link-text">
                 Pay Slip History</span>
             </a>

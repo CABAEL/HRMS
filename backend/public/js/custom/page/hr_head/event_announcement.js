@@ -317,7 +317,7 @@ $('#announcementBtn').on('click',function() {
             $.each(e.responseJSON.errors,function(k,v) {
                 $(form+' #'+k).css('border','solid 1px red');
                 
-            alert(form+' #'+k);
+            //alert(form+' #'+k);
               });
             hide_loader();
 
