@@ -122,12 +122,12 @@
       <div class="row">
         <div class="footer-col col-md-6">
           <h5>The Team</h5>
-          <p>Ariel John Lactuan<br>
-            Daniel Argarin Arago<br>
-            John Rey<br>
-            Michael
+          <p>Amit, Roderick D.<br>
+            Ballos, Mark Jerome V.<br>
+            Francis Rey I. Paradero<br>
+            Lala Renz Abdulaziz P.
           </p>
-          <p>Copyright © 2021 {{env('APP_NAME')}} </p>
+          <p>Copyright © 2022 {{env('APP_NAME')}} </p>
         </div>
         <div class="footer-col col-md-3">
           <h5></h5>
